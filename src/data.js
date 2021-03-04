@@ -700,4 +700,56 @@ const models = [
       insta_followers: 7000
       }
     ]
-  
+
+    const project_questions = [
+      {id: 1,
+        text: "What is your show called?"
+       },
+       {id: 2,
+         text: "When is your show?"
+       },
+       {id: 3,
+         text: "Where is your show?"
+       },
+       {id: 4,
+        text: "What is your budget?"
+       },
+    ]
+
+    const questions = [
+      {id: 1,
+       text: "What is your desired minimum age?",
+       model_attr: "age"
+      },
+      {id: 2,
+       text: "What is the height minimum?",
+       model_attr: "height"
+      },
+      {id: 3,
+       text: "What is the minimun amount of shows they have walked?",
+       model_attr: "shows_walked"
+      },
+      {id: 4,
+        text: "What is your fee limit on a model?",
+        model_attr: "fee"
+      },
+      {id: 5,
+        text: "How many instagram followers should she have?",
+        model_attr: "insta_followers"
+      },
+      {id: 6,
+        text: "Are you willing to fly models in?",
+        model_attr: "city"
+      },
+      {id: 7,
+        text: "Do you hate any agencies?",
+        model_attr: "agency"
+      },
+      {id: 8,
+        text: "Enter model special skills?",
+        model_attr: "special_skills"
+
+      },
+    ]
+
+  export {models, questions, project_questions};

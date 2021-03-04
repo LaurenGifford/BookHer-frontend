@@ -6,7 +6,7 @@ function Header () {
             <h1>BookHer</h1>
             <div>
                 <Link to="/projects">Projects</Link>
-                <Link to="/questions">Create Project</Link>
+                <Link to="/create_project">Create Project</Link>
             </div>
             <div>
                 <Link to="/signup">Signup</Link>
