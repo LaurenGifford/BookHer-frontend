@@ -1,7 +1,8 @@
-
+import React, {useState} from "react"
 
 function ModelCard({model}) {
-const {name, image, agency, age, city, ranking, shows_walked, height, special_skills, fee, insta_followers} = model
+    const {name, image, agency, age, city, ranking, shows_walked, height, special_skills, fee, insta_followers} = model
+    
     return (
         <div>
             <h2>{name} | Ranking: {ranking}</h2> 

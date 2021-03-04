@@ -32,7 +32,7 @@ function Body({allQuestions}) {
             filteredModels = allModels.filter((model) => model.age > parseInt(filterTerm))
         }
         else if (model_attr === "height") {
-            filteredModels = allModels.filter((model) => parseInt(model.height) > parseInt(filterTerm)) 
+            filteredModels = allModels.filter((model) => model.height > parseInt(filterTerm)) 
         }
         else if (model_attr === "shows_walked") {
             filteredModels = allModels.filter((model) => model.shows_walked > parseInt(filterTerm)) 

@@ -8,7 +8,7 @@ const models = [
         city: "Los Angeles", 
         ranking: 1, 
         shows_walked: 96, 
-        height: "5'11", 
+        height: 180, 
         special_skills: "improv", 
         fee: 10000, 
         insta_followers: 343000
@@ -22,7 +22,7 @@ const models = [
         city: "New York", 
         ranking: 2, 
         shows_walked: 84, 
-        height: "5'9", 
+        height: 180, 
         special_skills: "improv", 
         fee: 10000, 
         insta_followers: 6000
@@ -36,7 +36,7 @@ const models = [
         city: "New York", 
         ranking: 3, 
         shows_walked: 146, 
-        height: "5'8", 
+        height: 173, 
         special_skills: "singing", 
         fee: 10000, 
         insta_followers: 140000
@@ -50,7 +50,7 @@ const models = [
         city: "New York", 
         ranking: 4, 
         shows_walked: 216, 
-        height: "5'9", 
+        height: 180, 
         special_skills: "singing", 
         fee: 10000, 
         insta_followers: 1200000
@@ -64,7 +64,7 @@ const models = [
         city: "Paris", 
         ranking: 5 , 
         shows_walked: 73, 
-        height: "5'10", 
+        height: 177, 
         special_skills: "rock climbing", 
         fee: 10000, 
         insta_followers: 10000
@@ -78,7 +78,7 @@ const models = [
         city: "New York", 
         ranking: 6, 
         shows_walked: 124, 
-        height: "5'10", 
+        height: 177, 
         special_skills: "rock climbing", 
         fee: 10000, 
         insta_followers: 450000
@@ -92,7 +92,7 @@ const models = [
         city: "New York", 
         ranking: 7,
         shows_walked: 52, 
-        height: "5'8", 
+        height: 173, 
         special_skills: "combat training", 
         fee: 10000, 
         insta_followers: 8000
@@ -106,7 +106,7 @@ const models = [
         city: "New York", 
         ranking: 8, 
         shows_walked: 14, 
-        height: "6'0", 
+        height: 182, 
         special_skills: "combat training", 
         fee: 10000, 
         insta_followers: 16000
@@ -120,7 +120,7 @@ const models = [
         city: "Amsterdam", 
         ranking: 9, 
         shows_walked: 123, 
-        height: "5'10", 
+        height: 177, 
         special_skills: "improv", 
         fee: 5000, 
         insta_followers: 20000
@@ -134,7 +134,7 @@ const models = [
         city: "Paris", 
         ranking: 10, 
         shows_walked: 157, 
-        height: "5'10", 
+        height: 177, 
         special_skills: "improv", 
         fee: 5000, 
         insta_followers: 150000
@@ -148,7 +148,7 @@ const models = [
         city: "New York", 
         ranking: 11, 
         shows_walked: 181, 
-        height: "5'7", 
+        height: 173, 
         special_skills: "singing", 
         fee: 5000, 
         insta_followers: 39000
@@ -162,7 +162,7 @@ const models = [
         city: "New York", 
         ranking: 12, 
         shows_walked: 255, 
-        height: "6'0", 
+        height: 182, 
         special_skills: "singing", 
         fee: 5000, 
         insta_followers: 89000
@@ -176,7 +176,7 @@ const models = [
         city: "Los Angeles", 
         ranking: 13, 
         shows_walked: 202, 
-        height: "5'11", 
+        height: 180, 
         special_skills: "rock climbing", 
         fee: 5000, 
         insta_followers: 30000
@@ -190,7 +190,7 @@ const models = [
        city: "Paris", 
        ranking: 14, 
        shows_walked: 41, 
-       height: "6'0", 
+       height: 182, 
        special_skills: "rock climbing", 
        fee: 5000, 
        insta_followers: 15000
@@ -204,7 +204,7 @@ const models = [
         city: "Amsterdam", 
         ranking: 15, 
         shows_walked: 89, 
-        height: "5'11", 
+        height: 180, 
         special_skills: "combat training", 
         fee: 5000, 
         insta_followers: 16000
@@ -218,7 +218,7 @@ const models = [
        city: "London", 
        ranking: 16, 
        shows_walked: 227, 
-       height: "5'9", 
+       height: 180, 
        special_skills: "combat training", 
        fee: 5000, 
        insta_followers: 60000
@@ -232,7 +232,7 @@ const models = [
        city: "London", 
        ranking: 17, 
        shows_walked: 185, 
-       height: "5'11", 
+       height: 180, 
        special_skills: "improv", 
        fee: 5000, 
        insta_followers: 100000
@@ -246,7 +246,7 @@ const models = [
        city: "London", 
        ranking: 18, 
        shows_walked: 150, 
-       height: "5'7", 
+       height: 173, 
        special_skills: "improv", 
        fee: 5000, 
        insta_followers: 30000
@@ -260,7 +260,7 @@ const models = [
       city: "New York", 
       ranking: 19, 
       shows_walked: 200, 
-      height: "5'10", 
+      height: 177, 
       special_skills: "singing", 
       fee: 5000, 
       insta_followers: 1200000
@@ -274,7 +274,7 @@ const models = [
       city: "London", 
       ranking: 20, 
       shows_walked: 250, 
-      height: "5'11", 
+      height: 180, 
       special_skills: "singing", 
       fee: 5000, 
       insta_followers: 25000
@@ -288,7 +288,7 @@ const models = [
       city: "Paris", 
       ranking: 21, 
       shows_walked: 124, 
-      height: "6'0", 
+      height: 182, 
       special_skills: "rock climbing", 
       fee: 5000, 
       insta_followers: 110000
@@ -302,7 +302,7 @@ const models = [
       city: "Paris", 
       ranking: 22, 
       shows_walked: 166, 
-      height: "5'7", 
+      height: 173, 
       special_skills: "rock climbing", 
       fee: 1000, 
       insta_followers: 33000
@@ -316,7 +316,7 @@ const models = [
       city: "New York", 
       ranking: 23, 
       shows_walked: 98, 
-      height: "5'9", 
+      height: 180, 
       special_skills: "combat training", 
       fee: 1000, 
       insta_followers: 10000
@@ -330,7 +330,7 @@ const models = [
       city: "Los Angeles", 
       ranking: 24, 
       shows_walked: 352, 
-      height: "5'10", 
+      height: 177, 
       special_skills: "combat training", 
       fee: 1000, 
       insta_followers: 115000
@@ -344,7 +344,7 @@ const models = [
       city: "New York", 
       ranking: 25, 
       shows_walked: 112, 
-      height: "5'11", 
+      height: 180, 
       special_skills: "improv", 
       fee: 1000, 
       insta_followers: 66000
@@ -358,7 +358,7 @@ const models = [
       city: "Amsterdam", 
       ranking: 26, 
       shows_walked: 60, 
-      height: "5'9", 
+      height: 180, 
       special_skills: "improv", 
       fee: 1000, 
       insta_followers: 220000
@@ -372,7 +372,7 @@ const models = [
       city: "Los Angeles", 
       ranking: 27, 
       shows_walked: 164, 
-      height: "6'0", 
+      height: 182, 
       special_skills: "singing", 
       fee: 1000, 
       insta_followers: 6000000
@@ -386,7 +386,7 @@ const models = [
       city: "New York", 
       ranking: 28, 
       shows_walked: 135, 
-      height: "5'8", 
+      height: 173, 
       special_skills: "singing", 
       fee: 1000, 
       insta_followers: 197000
@@ -400,7 +400,7 @@ const models = [
       city: "Los Angeles", 
       ranking: 29, 
       shows_walked: 78, 
-      height: "5'11", 
+      height: 180, 
       special_skills: "rock climbing", 
       fee: 1000, 
       insta_followers: 6000
@@ -414,7 +414,7 @@ const models = [
       city: "London", 
       ranking: 30, 
       shows_walked: 300, 
-      height: "5'9", 
+      height: 180, 
       special_skills: "rock climbing", 
       fee: 1000, 
       insta_followers: 18000
@@ -428,7 +428,7 @@ const models = [
       city: "London", 
       ranking: 31, 
       shows_walked: 43, 
-      height: "5'8", 
+      height: 173, 
       special_skills: "combat training", 
       fee: 1000, 
       insta_followers: 135000
@@ -442,7 +442,7 @@ const models = [
       city: "Paris", 
       ranking: 32, 
       shows_walked: 216, 
-      height: "5'10", 
+      height: 177, 
       special_skills: "combat training", 
       fee: 1000, 
       insta_followers: 13000
@@ -456,7 +456,7 @@ const models = [
       city: "New York", 
       ranking: 33, 
       shows_walked: 398, 
-      height: "5'11", 
+      height: 180, 
       special_skills: "horseback riding", 
       fee: 1000, 
       insta_followers: 200000
@@ -470,7 +470,7 @@ const models = [
       city: "New York", 
       ranking: 34, 
       shows_walked: 94, 
-      height: "5'9", 
+      height: 180, 
       special_skills: "archery", 
       fee: 10000, 
       insta_followers: 27000
@@ -484,7 +484,7 @@ const models = [
       city: "Amsterdam", 
       ranking: 35, 
       shows_walked: 178, 
-      height: "5'11", 
+      height: 180, 
       special_skills: "horseback riding", 
       fee: 10000, 
       insta_followers: 235000
@@ -498,7 +498,7 @@ const models = [
       city: "Paris", 
       ranking: 36, 
       shows_walked: 140, 
-      height: "5'8", 
+      height: 173, 
       special_skills: "archery", 
       fee: 10000, 
       insta_followers: 14000
@@ -512,7 +512,7 @@ const models = [
       city: "London", 
       ranking: 37, 
       shows_walked: 76, 
-      height: "5'7", 
+      height: 173, 
       special_skills: "horseback riding", 
       fee: 10000, 
       insta_followers: 6000
@@ -540,7 +540,7 @@ const models = [
       city: "Paris", 
       ranking: 39, 
       shows_walked: 70, 
-      height: "5'9", 
+      height: 180, 
       special_skills: "horseback riding", 
       fee: 10000, 
       insta_followers: 70000
@@ -554,7 +554,7 @@ const models = [
       city: "Barcelona", 
       ranking: 40, 
       shows_walked: 58, 
-      height: "5'10", 
+      height: 177, 
       special_skills: "archery", 
       fee: 10000, 
       insta_followers: 16000
@@ -568,7 +568,7 @@ const models = [
       city: "Amersterdam", 
       ranking: 41, 
       shows_walked: 322, 
-      height: "5'8", 
+      height: 173, 
       special_skills: "horseback riding", 
       fee: 10000, 
       insta_followers: 56000
@@ -582,7 +582,7 @@ const models = [
       city: "Amersterdam", 
       ranking: 42, 
       shows_walked: 146, 
-      height: "5'10", 
+      height: 177, 
       special_skills: "archery", 
       fee: 5000, 
       insta_followers: 40000
@@ -596,7 +596,7 @@ const models = [
       city: "New York", 
       ranking: 43, 
       shows_walked: 278, 
-      height: "5'10", 
+      height: 177, 
       special_skills: "horseback riding", 
       fee: 5000, 
       insta_followers: 20000
@@ -610,7 +610,7 @@ const models = [
       city: "New York", 
       ranking: 44, 
       shows_walked: 39, 
-      height: "5'10", 
+      height: 177, 
       special_skills: "archery", 
       fee: 5000, 
       insta_followers: 357000
@@ -624,7 +624,7 @@ const models = [
       city: "New York", 
       ranking: 45, 
       shows_walked: 194, 
-      height: "5'11", 
+      height: 180, 
       special_skills: "horseback riding", 
       fee: 5000, 
       insta_followers: 53000
@@ -638,7 +638,7 @@ const models = [
       city: "New York", 
       ranking: 46, 
       shows_walked: 110, 
-      height: "6'0", 
+      height: 182, 
       special_skills: "archery", 
       fee: 5000, 
       insta_followers: 8000
@@ -652,7 +652,7 @@ const models = [
       city: "New York", 
       ranking: 47, 
       shows_walked: 190, 
-      height: "5'8", 
+      height: 173, 
       special_skills: "horseback riding", 
       fee: 5000, 
       insta_followers: 70000
@@ -666,7 +666,7 @@ const models = [
       city: "Los Angeles", 
       ranking: 48, 
       shows_walked: 231, 
-      height: "5'9", 
+      height: 180, 
       special_skills: "archery", 
       fee: 1000, 
       insta_followers: 60000
@@ -680,7 +680,7 @@ const models = [
       city: "Los Angeles", 
       ranking: 49, 
       shows_walked: 247, 
-      height: "5'10", 
+      height: 177, 
       special_skills: "horseback riding", 
       fee: 1000, 
       insta_followers: 220000
@@ -694,7 +694,7 @@ const models = [
       city: "Paris", 
       ranking: 50, 
       shows_walked: 22, 
-      height: "5'8", 
+      height: 173, 
       special_skills: "archery", 
       fee: 1000, 
       insta_followers: 7000
