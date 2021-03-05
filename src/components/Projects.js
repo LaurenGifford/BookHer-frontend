@@ -5,12 +5,20 @@ function Projects({currentUser}) {
     const [projects, setProjects] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:3001/casting_directors/${currentUser}`)
+        fetch(`http://localhost:3000/casting_directors/${currentUser}`)
         .then(response => response.json())
         .then(data => {
             setProjects(data.projects)
             console.log(data)})
     }, [])
+
+    function deleteProject(id) {
+        fetch(`http://localhost:3000/projects/${id}`, {
+            method: "DELETE"
+          })
+          let notDeleted = projects.filter((project) => project.id !== id)
+          setProjects(notDeleted)
+        }
 
     const renderProjects = projects.map(project => (
         <li>
@@ -18,6 +26,7 @@ function Projects({currentUser}) {
             project={project}
             models={project.models}
             currentUser={currentUser}
+            deleteProject={deleteProject}
         />
         </li>
     ))

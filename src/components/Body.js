@@ -1,33 +1,30 @@
 import Question from "./Question"
 import ModelCard from "./ModelCard";
-import {project_questions, models} from '../data.js';
+import {project_questions} from '../data.js';
 import React, {useState, useEffect} from "react"
 
-function Body() {
+function Body({allModels, setAllModels, currentUser}) {
     const [projectData, setProjectData] = useState({
         date:"", 
         title:"", 
         budget: 100, 
         city:"", 
         agency: "",
-        casting_director_id: 1
+        casting_director_id: currentUser
     })
     const [showModelQuestions, setShowModelQuestions] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState(1)
-    const [allModels, setAllModels] = useState(models)
     const [allQuestions, setAllQuestions] = useState([])
+    const [newProject, setNewProject] = useState(0)
+    const [index, setIndex] = useState(0)
 
     const displayCurrentQuestion = allQuestions.filter((question) => question.id === currentQuestion)
     .map((question) => < Question key={question.id} question={question} allModels={allModels} onModelFilter={handleModelFilter} setCurrentQuestion={setCurrentQuestion}/>)
 
-    useEffect(() => {
-        fetch('http://localhost:3001/models')
-        .then(response => response.json())
-        .then(data => setAllModels(data))
-    }, [])
+    let displayModels = allModels.slice(index, index + 4).map((model) => <ModelCard key={model.id} model={model} newProject={newProject} handleBudget={handleBudget}/>)
 
     useEffect(() => {
-        fetch('http://localhost:3001/questions')
+        fetch('http://localhost:3000/questions')
         .then(response => response.json())
         .then(data => setAllQuestions(data.slice(0,8)))
     }, [])
@@ -38,13 +35,14 @@ function Body() {
         e.preventDefault()
         setShowModelQuestions(true)
         console.log(projectData)
-        fetch(`http://localhost:3001/projects`, {
+        fetch(`http://localhost:3000/projects`, {
             method: "POST",
             headers: {
                 "Content-Type" : 'application/json'
             },
             body: JSON.stringify(projectData)
-        })
+        }).then(response => response.json())
+        .then(data => setNewProject(data))
     }
 
     function handleChange(e) {
@@ -53,6 +51,15 @@ function Body() {
             [e.target.name]: e.target.value
         })
     }
+
+    function handleBudget(fee) {
+        let newBudget = newProject.budget - fee
+        setNewProject({
+            ...newProject,
+            budget: newBudget 
+        })
+        console.log(newBudget)
+    } 
 
 
     function handleModelFilter(filterTerm, model_attr) {
@@ -78,19 +85,19 @@ function Body() {
         else if (model_attr === "special_skills") {
             filteredModels = allModels.filter((model) => model.special_skills.includes(filterTerm))
         }
-        if (filteredModels > 0){
+        // if (filteredModels > 0){
         setAllModels(filteredModels)
         console.log(filteredModels)
-        }
+        // }
     }
 
 
     return (
         <div>
         <form onSubmit={handleFormSubmit}> 
-            <label>{project_questions[0].text}</label>
-            <input name="date" value={projectData.date} type="text" onChange={handleChange}></input>
             <label>{project_questions[1].text}</label>
+            <input name="date" value={projectData.date} type="text" onChange={handleChange}></input>
+            <label>{project_questions[0].text}</label>
             <input name="title" value={projectData.title} type="text" onChange={handleChange}></input>
             <label>{project_questions[3].text}</label>
             <input name="budget" value={projectData.budget} type="number" onChange={handleChange}></input>
@@ -99,7 +106,8 @@ function Body() {
 
             <label>{project_questions[4].text}</label>
             <select name="agency" onChange={handleChange}>
-                <option selected value="Next">Next</option>
+                <option></option>
+                <option value="Next">Next</option>
                 <option value="DNA">DNA</option>
                 <option value="The Society">The Society</option>
                 <option value="Ford">Ford</option>
@@ -112,9 +120,10 @@ function Body() {
             <input type="submit" value="Submit"></input>
         </form>
         <div className="models-container">
+        <button onClick={() => setIndex(index + 4)}>See more Models</button>
+        <aside>Budget {newProject.budget}</aside>
             {showModelQuestions ? displayCurrentQuestion : null}
-            < ModelCard model={allModels[0]} project={"new"}/>
-            < ModelCard model={allModels[1]} project={"new"}/>
+            {showModelQuestions ? displayModels : null }
         </div>
     </div>
     )

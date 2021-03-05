@@ -1,8 +1,8 @@
 import ModelCard from "./ModelCard";
 
-function Project({models, project, currentUser}) {
+function Project({models, project, currentUser, deleteProject}) {
 
-    const {title, date, budget, city} = project
+    const {id, title, date, budget, city} = project
     const modelsarray = models.map((model) => (
     <ModelCard 
         key={model.id} 
@@ -18,6 +18,7 @@ function Project({models, project, currentUser}) {
             <p>City: {city} </p>
             <p>Casting Director: {currentUser} </p>
             <p>Budget: ${budget} </p>
+            <button onClick={() => deleteProject(id)}>Delete Project</button>
             </section>
             <div className="models-container">
             {modelsarray}
