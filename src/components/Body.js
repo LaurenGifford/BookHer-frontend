@@ -65,11 +65,13 @@ function Body({allQuestions}) {
             <input name="budget" value={projectData.budget} type="number" onChange={handleChange}></input>
             <label>{project_questions[2].text}</label>
             <input name="city" value={projectData.city} type="text" onChange={handleChange}></input>
-            <input type="submit" value="submit"></input>
+            <input type="submit" value="Submit"></input>
         </form>
+        <div className="models-container">
         {showModelQuestions ? displayCurrentQuestion : null}
-            < ModelCard model={allModels[0]} />
-            < ModelCard model={allModels[1]} />
+            < ModelCard model={allModels[0]} project={"new"}/>
+            < ModelCard model={allModels[1]} project={"new"}/>
+        </div>
     </div>
     )
 }

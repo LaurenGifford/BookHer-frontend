@@ -1,3 +1,10 @@
+:root {
+  --blue: rgb(118, 201, 240);
+  --dark-blue: rgb(6, 34, 94);;
+  --cream: rgb(242, 243, 243);
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +17,93 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--blue);
+  color: var(--dark-blue)
+}
+
+header a,
+header button {
+  font-size: 1rem;
+  display: inline-block;
+  background-color: var(--dark-blue);
+  border: 1px solid var(--blue);
+  margin: 1rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--cream);
+  cursor: pointer;
+}
+
+section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
+main {
+  margin: 1rem;
+  grid-template-rows: 1fr 1fr;
+}
+
+/* h2 {
+  
+} */
+
+.model-card {
+  grid-row: 2;
+}
+
+.model-card img {
+  height: 20rem;
+  width: 18rem;
+
+}
+
+.project-container {
+  display: inline-block;
+  display: grid;
+  background-color: var(--cream);
+  align-items: center;
+}
+
+.models-container {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 50rem));
+  background-color: var(--cream);
+}
+
+form {
+  background-color: var(--cream);
+  border: 1px solid var(--blue);
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 0 auto;
+  padding: 0 1rem 1rem;
+  color: var(--dark-blue);
+  grid-row: 1;
+}
+
+form input {
+  margin: 0.25rem 0;
+  border: 1px solid var(--blue);
+}
+
+form input[type="submit"] {
+  width: 40%;
+  background-color: var(--cream);
+  color: var(--dark-blue);
+}
+
+form img {
+  width: 150px;
 }

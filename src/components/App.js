@@ -28,7 +28,7 @@ function App() {
             <Body allQuestions={allQuestions}/>
           </Route>
           <Route path="/projects">
-            <Project />
+            <Project models={models.slice(0, 5)} />
           </Route>
         </Switch>
       </main>
