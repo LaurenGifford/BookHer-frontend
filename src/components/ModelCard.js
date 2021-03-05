@@ -4,9 +4,9 @@ function ModelCard({model, project}) {
     const {id, name, image, agency, age, city, ranking, shows_walked, height, special_skills, fee, insta_followers} = model
     
     return (
-        <div className={"model-card"}>
+        <div className="model-card">
             <h3>{name} | Ranking: {ranking}</h3> 
-            <img src={image} ></img><br/>
+            <img src={image} alt={name}></img><br/>
             <small> Agency: {agency} | {city}</small> 
             <p> Age: {age}</p>
             <p> Height: {height}cm</p>

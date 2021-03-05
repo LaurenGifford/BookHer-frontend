@@ -1,4 +1,4 @@
-import ModelCard from "./ModelCard";
+
 import React, {useState} from "react"
 
 function Question({allModels, question, onModelFilter, setCurrentQuestion}) {

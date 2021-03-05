@@ -1,17 +1,19 @@
 // import logo from './logo.svg';
 // import './App.css';
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import {models, questions} from '../data.js';
 import { Switch, Route } from "react-router-dom";
 import Header from "./Header"
 import Login from "./Login"
 import Question from "./Question"
-import Project from "./Project"
+import Projects from "./Projects"
 import SignUp from "./SignUp"
 import Body from "./Body"
 
 function App() {
   const [allQuestions, setAllQuestions] = useState(questions)
+  const [currentUser, setCurrentUser] = useState(1)
+  
   
   return (
     <>
@@ -28,7 +30,10 @@ function App() {
             <Body allQuestions={allQuestions}/>
           </Route>
           <Route path="/projects">
-            <Project models={models.slice(0, 5)} />
+            <Projects 
+            models={models.slice(0, 5)} 
+            currentUser={currentUser}
+            />
           </Route>
         </Switch>
       </main>

@@ -1,7 +1,7 @@
 import Question from "./Question"
 import ModelCard from "./ModelCard";
 import {project_questions, models} from '../data.js';
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 
 function Body({allQuestions}) {
     const [projectData, setProjectData] = useState({date:"", title:"", budget: 100, city:"", casting_director_id: 1})
@@ -13,6 +13,18 @@ function Body({allQuestions}) {
 
     const displayCurrentQuestion = allQuestions.filter((question) => question.id === currentQuestion)
     .map((question) => < Question key={question.id} question={question} allModels={allModels} onModelFilter={handleModelFilter} setCurrentQuestion={setCurrentQuestion}/>)
+
+    useEffect(() => {
+        fetch('http://localhost:3001/models')
+        .then(response => response.json())
+        .then(data => setAllModels(data))
+    }, [])
+
+
+
+
+
+
 
     function handleFormSubmit(e) {
         e.preventDefault()

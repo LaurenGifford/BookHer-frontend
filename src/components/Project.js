@@ -1,6 +1,8 @@
 import ModelCard from "./ModelCard";
 
-function Project({models}) {
+function Project({models, project, currentUser}) {
+
+    const {title, date, budget, city} = project
     const modelsarray = models.map((model) => (
     <ModelCard 
         key={model.id} 
@@ -10,12 +12,12 @@ function Project({models}) {
     
     return (
         <div className="project-container">
-            <h2> Project Name</h2>
+            <h2> Project: {title} </h2>
             <section>
-            <p>Date</p>
-            <p>City</p>
-            <p>Casting Director</p>
-            <p>Budget</p>
+            <p>Date: {date} </p>
+            <p>City: {city} </p>
+            <p>Casting Director: {currentUser} </p>
+            <p>Budget: ${budget} </p>
             </section>
             <div className="models-container">
             {modelsarray}
