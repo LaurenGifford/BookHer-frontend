@@ -3,13 +3,19 @@ import ModelCard from "./ModelCard";
 import {project_questions, models} from '../data.js';
 import React, {useState, useEffect} from "react"
 
-function Body({allQuestions}) {
-    const [projectData, setProjectData] = useState({date:"", title:"", budget: 100, city:"", casting_director_id: 1})
+function Body() {
+    const [projectData, setProjectData] = useState({
+        date:"", 
+        title:"", 
+        budget: 100, 
+        city:"", 
+        agency: "",
+        casting_director_id: 1
+    })
     const [showModelQuestions, setShowModelQuestions] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState(1)
     const [allModels, setAllModels] = useState(models)
-
-    const displayQuestions = allQuestions.map((question) => < Question key={question.id} question={question} allModels={allModels}/>)
+    const [allQuestions, setAllQuestions] = useState([])
 
     const displayCurrentQuestion = allQuestions.filter((question) => question.id === currentQuestion)
     .map((question) => < Question key={question.id} question={question} allModels={allModels} onModelFilter={handleModelFilter} setCurrentQuestion={setCurrentQuestion}/>)
@@ -20,15 +26,25 @@ function Body({allQuestions}) {
         .then(data => setAllModels(data))
     }, [])
 
-
-
-
+    useEffect(() => {
+        fetch('http://localhost:3001/questions')
+        .then(response => response.json())
+        .then(data => setAllQuestions(data.slice(0,8)))
+    }, [])
 
 
 
     function handleFormSubmit(e) {
         e.preventDefault()
         setShowModelQuestions(true)
+        console.log(projectData)
+        fetch(`http://localhost:3001/projects`, {
+            method: "POST",
+            headers: {
+                "Content-Type" : 'application/json'
+            },
+            body: JSON.stringify(projectData)
+        })
     }
 
     function handleChange(e) {
@@ -37,6 +53,7 @@ function Body({allQuestions}) {
             [e.target.name]: e.target.value
         })
     }
+
 
     function handleModelFilter(filterTerm, model_attr) {
         let filteredModels
@@ -61,8 +78,10 @@ function Body({allQuestions}) {
         else if (model_attr === "special_skills") {
             filteredModels = allModels.filter((model) => model.special_skills.includes(filterTerm))
         }
+        if (filteredModels > 0){
         setAllModels(filteredModels)
         console.log(filteredModels)
+        }
     }
 
 
@@ -77,10 +96,23 @@ function Body({allQuestions}) {
             <input name="budget" value={projectData.budget} type="number" onChange={handleChange}></input>
             <label>{project_questions[2].text}</label>
             <input name="city" value={projectData.city} type="text" onChange={handleChange}></input>
+
+            <label>{project_questions[4].text}</label>
+            <select name="agency" onChange={handleChange}>
+                <option selected value="Next">Next</option>
+                <option value="DNA">DNA</option>
+                <option value="The Society">The Society</option>
+                <option value="Ford">Ford</option>
+                <option value="Women">Women</option>
+                <option value="Elite">Elite</option>
+                <option value="IMG">IMG</option>
+                <option value="Heroes">Heroes</option>
+                <option value="The Industry">The Industry</option>
+            </select>
             <input type="submit" value="Submit"></input>
         </form>
         <div className="models-container">
-        {showModelQuestions ? displayCurrentQuestion : null}
+            {showModelQuestions ? displayCurrentQuestion : null}
             < ModelCard model={allModels[0]} project={"new"}/>
             < ModelCard model={allModels[1]} project={"new"}/>
         </div>

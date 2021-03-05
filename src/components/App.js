@@ -5,13 +5,11 @@ import {models, questions} from '../data.js';
 import { Switch, Route } from "react-router-dom";
 import Header from "./Header"
 import Login from "./Login"
-import Question from "./Question"
 import Projects from "./Projects"
 import SignUp from "./SignUp"
 import Body from "./Body"
 
 function App() {
-  const [allQuestions, setAllQuestions] = useState(questions)
   const [currentUser, setCurrentUser] = useState(1)
   
   
@@ -27,7 +25,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/create_project">
-            <Body allQuestions={allQuestions}/>
+            <Body />
           </Route>
           <Route path="/projects">
             <Projects 
