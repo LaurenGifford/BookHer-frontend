@@ -94,37 +94,41 @@ function Body({allModels, setAllModels, currentUser}) {
 
     return (
         <div>
-        <form onSubmit={handleFormSubmit}> 
-            <label>{project_questions[1].text}</label>
-            <input name="date" value={projectData.date} type="text" onChange={handleChange}></input>
-            <label>{project_questions[0].text}</label>
-            <input name="title" value={projectData.title} type="text" onChange={handleChange}></input>
-            <label>{project_questions[3].text}</label>
-            <input name="budget" value={projectData.budget} type="number" onChange={handleChange}></input>
-            <label>{project_questions[2].text}</label>
-            <input name="city" value={projectData.city} type="text" onChange={handleChange}></input>
+            {showModelQuestions ? null :
+            <form onSubmit={handleFormSubmit}> 
+                <label>{project_questions[1].text}</label>
+                <input name="date" value={projectData.date} type="text" onChange={handleChange}></input>
+                <label>{project_questions[0].text}</label>
+                <input name="title" value={projectData.title} type="text" onChange={handleChange}></input>
+                <label>{project_questions[3].text}</label>
+                <input name="budget" value={projectData.budget} type="number" onChange={handleChange}></input>
+                <label>{project_questions[2].text}</label>
+                <input name="city" value={projectData.city} type="text" onChange={handleChange}></input>
 
-            <label>{project_questions[4].text}</label>
-            <select name="agency" onChange={handleChange}>
-                <option></option>
-                <option value="Next">Next</option>
-                <option value="DNA">DNA</option>
-                <option value="The Society">The Society</option>
-                <option value="Ford">Ford</option>
-                <option value="Women">Women</option>
-                <option value="Elite">Elite</option>
-                <option value="IMG">IMG</option>
-                <option value="Heroes">Heroes</option>
-                <option value="The Industry">The Industry</option>
-            </select>
-            <input type="submit" value="Submit"></input>
-        </form>
-        <div className="models-container">
-        <button onClick={() => setIndex(index + 4)}>See more Models</button>
-        <aside>Budget {newProject.budget}</aside>
-            {showModelQuestions ? displayCurrentQuestion : null}
-            {showModelQuestions ? displayModels : null }
-        </div>
+                <label>{project_questions[4].text}</label>
+                <select name="agency" onChange={handleChange}>
+                    <option></option>
+                    <option value="Next">Next</option>
+                    <option value="DNA">DNA</option>
+                    <option value="The Society">The Society</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Women">Women</option>
+                    <option value="Elite">Elite</option>
+                    <option value="IMG">IMG</option>
+                    <option value="Heroes">Heroes</option>
+                    <option value="The Industry">The Industry</option>
+                </select>
+                <input type="submit" value="Submit"></input>
+            </form>
+            }
+            {showModelQuestions ? 
+            <div className="models-container">
+            <button onClick={() => setIndex(index + 4)} >See more Models</button>
+            <div id="budget" >Budget {newProject.budget}</div>
+                {showModelQuestions ? displayCurrentQuestion : null}
+                {showModelQuestions ? displayModels : null }
+            </div>
+            : null}
     </div>
     )
 }

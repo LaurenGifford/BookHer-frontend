@@ -13,9 +13,9 @@ function submitQuestion(e) {
 }
 
         return (
-        <div>
+        <div id="question">
             <h2> Question {id}: {text}</h2>
-            <form onSubmit={submitQuestion}>
+            <form onSubmit={submitQuestion} className="single-question">
             <input value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)}></input>
             <input type="submit"></input>
             </form>

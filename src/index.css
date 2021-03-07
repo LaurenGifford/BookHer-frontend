@@ -48,14 +48,11 @@ section {
 }
 
 
-main {
+/* main {
   margin: 1rem;
   grid-template-rows: 1fr 1fr;
-}
-
-/* h2 {
-  
 } */
+
 
 .model-card {
   grid-row: 2;
@@ -78,7 +75,20 @@ main {
   padding: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 50rem));
+  grid-template-rows: 1fr 1fr;
   background-color: var(--cream);
+}
+
+#budget {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: larger;
+  font-weight: bold;
+}
+
+#question {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 form {
@@ -100,10 +110,41 @@ form input {
 
 form input[type="submit"] {
   width: 40%;
-  background-color: var(--cream);
+  background-color: var(--dark-blue);
+  color: var(--cream);
+}
+
+form select {
+  margin: 0.25rem 0;
+  border: 1px solid var(--blue);
   color: var(--dark-blue);
 }
+
 
 form img {
   width: 150px;
 }
+
+form.single-question {
+  width: 15rem;
+  place-items: center;
+}
+
+form.single-question input{
+  width: 80%;
+}
+
+form.single-question label{
+  color: var(--dark-blue);
+}
+
+button {
+  background-color: var(--dark-blue);
+  color: var(--cream);
+  width: 6rem;
+  height: 3rem;
+  border: 1px solid var(--blue);
+  padding: 1rem;
+
+}
+
