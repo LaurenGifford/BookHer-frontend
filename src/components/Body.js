@@ -7,7 +7,7 @@ function Body({allModels, setAllModels, currentUser}) {
     const [projectData, setProjectData] = useState({
         date:"", 
         title:"", 
-        budget: 100, 
+        budget: 100000, 
         city:"", 
         agency: "",
         casting_director_id: currentUser
@@ -19,9 +19,9 @@ function Body({allModels, setAllModels, currentUser}) {
     const [index, setIndex] = useState(0)
 
     const displayCurrentQuestion = allQuestions.filter((question) => question.id === currentQuestion)
-    .map((question) => < Question key={question.id} question={question} allModels={allModels} onModelFilter={handleModelFilter} setCurrentQuestion={setCurrentQuestion}/>)
+    .map((question) => < Question key={question.id} question={question} onModelFilter={handleModelFilter} setCurrentQuestion={setCurrentQuestion} project={newProject}/>)
 
-    let displayModels = allModels.slice(index, index + 4).map((model) => <ModelCard key={model.id} model={model} newProject={newProject} handleBudget={handleBudget}/>)
+    let displayModels = allModels.slice(index, index + 4).map((model) => <ModelCard key={model.id} model={model} newProject={newProject} handleBudget={handleBudget} onModelFilter={handleModelFilter}/>)
 
     useEffect(() => {
         fetch('http://localhost:3000/questions')
@@ -43,6 +43,7 @@ function Body({allModels, setAllModels, currentUser}) {
             body: JSON.stringify(projectData)
         }).then(response => response.json())
         .then(data => setNewProject(data))
+        // handleModelFilter(data.agency, agency)
     }
 
     function handleChange(e) {
@@ -53,12 +54,14 @@ function Body({allModels, setAllModels, currentUser}) {
     }
 
     function handleBudget(fee) {
+        if (newProject.budget> 0) {
         let newBudget = newProject.budget - fee
         setNewProject({
             ...newProject,
             budget: newBudget 
         })
         console.log(newBudget)
+        }
     } 
 
 
@@ -85,7 +88,13 @@ function Body({allModels, setAllModels, currentUser}) {
         else if (model_attr === "special_skills") {
             filteredModels = allModels.filter((model) => model.special_skills.includes(filterTerm))
         }
-        // if (filteredModels > 0){
+        else if (model_attr === "agency") {
+            filteredModels = allModels.filter((model) => model.agency !== filterTerm)
+        }
+        else if (model_attr === "id") {
+            filteredModels = allModels.filter((model) => model.id !== filterTerm)
+        }
+        // if (filteredModels && filteredModels > 0){
         setAllModels(filteredModels)
         console.log(filteredModels)
         // }
