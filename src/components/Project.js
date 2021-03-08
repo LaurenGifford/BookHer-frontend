@@ -1,7 +1,8 @@
 import ModelCard from "./ModelCard";
+import React, {useState} from "react"
 
 function Project({models, project, currentUser, deleteProject}) {
-
+    const [showProject, setShowProject] = useState(false)
     const {id, title, date, budget, city} = project
     const modelsarray = models.map((model) => (
     <ModelCard 
@@ -12,7 +13,8 @@ function Project({models, project, currentUser, deleteProject}) {
     
     return (
         <div className="project-container">
-            <h2> Project: {title} </h2>
+            <h2 onClick={() => setShowProject(!showProject)}> Project: {title} </h2>
+            {showProject ? <>
             <section>
             <p>Date: {date} </p>
             <p>City: {city} </p>
@@ -22,7 +24,8 @@ function Project({models, project, currentUser, deleteProject}) {
             </section>
             <div className="models-container">
             {modelsarray}
-            </div>
+            </div> </>
+            : null }
         </div>
     )
     }

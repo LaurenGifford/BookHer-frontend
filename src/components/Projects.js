@@ -3,6 +3,7 @@ import Project from "./Project"
 
 function Projects({currentUser}) {
     const [projects, setProjects] = useState([])
+    const [showProject, setShowProject] = useState(false)
 
     useEffect(() => {
         fetch(`http://localhost:3000/casting_directors/${currentUser}`)
@@ -20,20 +21,20 @@ function Projects({currentUser}) {
           setProjects(notDeleted)
         }
 
-    const renderProjects = projects.map(project => (
-        <li>
-        <Project 
+    const renderProjectList = projects.map(project => (
+
+            <Project 
             project={project}
             models={project.models}
             currentUser={currentUser}
             deleteProject={deleteProject}
         />
-        </li>
     ))
-
+    
+    
     return (
         <div>
-            <ul>{renderProjects}</ul>
+            <ul>{renderProjectList}</ul>
         </div>
 
     )
