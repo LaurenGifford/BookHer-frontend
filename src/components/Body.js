@@ -1,7 +1,6 @@
 import Question from "./Question"
 import ModelCard from "./ModelCard";
-import PopUp from "./PopUp"
-import Popup from 'reactjs-popup';
+import MonsterQ from "./MonsterQ"
 import 'reactjs-popup/dist/index.css';
 
 import {project_questions} from '../data.js';
@@ -22,67 +21,48 @@ function Body({allModels, setAllModels, currentUser}) {
     const [popUpQuestions, setPopUpQuestions] = useState([])
     const [newProject, setNewProject] = useState(0)
     const [index, setIndex] = useState(0)
-    const [popUp, setPopUp] = useState(true)
+    const [random, setRandom] = useState(0)
 
     const displayCurrentQuestion = allQuestions.filter((question) => question.id === currentQuestion)
-    .map((question) => < Question key={question.id} question={question} onModelFilter={handleModelFilter} 
-    handleBudget={handleBudget} setCurrentQuestion={setCurrentQuestion} newProject={newProject}/>)
+    .map((question) => (
+        < Question key={question.id} question={question} 
+            onModelFilter={handleModelFilter} handleBudget={handleBudget} 
+            setCurrentQuestion={setCurrentQuestion} newProject={newProject}
+            setRandomQuestion={setRandomQuestion}
+            currentQuestion={currentQuestion}
+            previousQuestion={question.id - 1}
+        />))
 
-    let displayModels = allModels.slice(index, index + 4).filter(model => model.agency !== newProject.data)
-    .map((model) => <ModelCard key={model.id} model={model} newProject={newProject} handleBudget={handleBudget} handleModelFilter={handleModelFilter}/>)
+    let displayModels = allModels.slice(index, index + 4)
+    .filter(model => model.agency !== newProject.data)
+    .map((model) => (
+        <ModelCard key={model.id} model={model} 
+            newProject={newProject} handleBudget={handleBudget} 
+            handleModelFilter={handleModelFilter}
+            exists={false}
+        />))
 
-    const renderPopUp = popUpQuestions
+    const renderPopUp = popUpQuestions.filter(question => question.id === 8)
     .map(question => 
-        <Popup  trigger={<button className="button"> See Message </button>} modal nested>
-            {close => (
-                <div className="modal">
-                <button className="close " onClick={close}>
-                  &times;
-                </button>
-                <div className="header"> Monster Alert!!! </div>
-                <div className="content">
-                  {' '}
-                  {question.text}
-                  <br />
-                </div>
-                <div className="actions">
-                <button
-                    className="button"
-                    onClick={() => {
-                        handleBudget(5000)
-                      close();
-                    }}
-                  >
-                    $5000 Keep Her
-                  </button>
-                  <button
-                    className="button"
-                    onClick={() => {
-                        handleBudget(2000)
-                      close();
-                    }}
-                  >
-                    $2000 Fire Her
-                  </button>
-                </div>
-              </div>
-            )}
-          </Popup>
+            <MonsterQ 
+                question={question}
+                handleBudget={handleBudget}
+            />
         )
-    // .filter(question => question.id === currentQuestion)
 
-    // <Popup  trigger={<button className="pop-up"> Trigger </button>} modal nested>
-    // <span>{question.text}</span>
-    // </Popup>
+
+    function setRandomQuestion() {
+        setRandom(Math.floor(Math.random() * (12 - 8) + 8))
+    }
     
     
     useEffect(() => {
         fetch('http://localhost:3000/questions')
         .then(response => response.json())
         .then(data => {
-            setAllQuestions(data.slice(0,6));
-            setPopUpQuestions(data.slice(7,11))
-            console.log(data.slice(7,11))
+            setAllQuestions(data.slice(0,7));
+            setPopUpQuestions(data.slice(8,12))
+            console.log(data.slice(0,7))
         })
     }, [])
     
@@ -117,7 +97,8 @@ function Body({allModels, setAllModels, currentUser}) {
                 "Content-Type" : 'application/json'
             },
             body: JSON.stringify(projectData)
-        }).then(response => response.json())
+        })
+        .then(response => response.json())
         .then(data => {
             setNewProject(data)
         })
@@ -153,6 +134,7 @@ function Body({allModels, setAllModels, currentUser}) {
 
 
     function handleModelFilter(filterTerm, model_attr) {
+        console.log(filterTerm, model_attr)
         let filteredModels
         if (model_attr === "age") {
             filteredModels = allModels.filter((model) => model.age > parseInt(filterTerm))
@@ -169,7 +151,7 @@ function Body({allModels, setAllModels, currentUser}) {
         else if (model_attr === "insta_followers") {
             filteredModels = allModels.filter((model) => model.insta_followers > parseInt(filterTerm))
         }
-        else if (model_attr === "city" && filterTerm === false) {
+        else if (model_attr === "city") {
             filteredModels = allModels.filter((model) => model.city === projectData.city)
         }
         else if (model_attr === "special_skills") {
@@ -181,11 +163,11 @@ function Body({allModels, setAllModels, currentUser}) {
         else if (model_attr === "id") {
             filteredModels = allModels.filter((model) => model.id !== filterTerm)
         }
-        // if (filteredModels && filteredModels > 0){
-        setAllModels(filteredModels)
+
+        setAllModels( filteredModels.length > 0 && filteredModels)
         console.log(filteredModels)
-        // }
     }
+    console.log(allModels.length)
 
 
     return (
@@ -222,7 +204,7 @@ function Body({allModels, setAllModels, currentUser}) {
             <button onClick={() => setIndex(index + 4)} >See more Models</button>
             <div id="budget" >Budget {newProject.budget}</div>
                 {showModelQuestions ? displayCurrentQuestion : null}
-                {currentQuestion > 1  ? displayModels : null }
+                {allModels.length === 0 ? <h3>No more Models to show</h3> : displayModels}
             </div>
             : null}
             {renderPopUp}

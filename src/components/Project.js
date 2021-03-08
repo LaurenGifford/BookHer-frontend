@@ -4,11 +4,12 @@ import React, {useState} from "react"
 function Project({models, project, currentUser, deleteProject}) {
     const [showProject, setShowProject] = useState(false)
     const {id, title, date, budget, city} = project
+    
     const modelsarray = models.map((model) => (
     <ModelCard 
         key={model.id} 
         model={model} 
-        project={"old"}
+        exists={true}
     />))
     
     return (

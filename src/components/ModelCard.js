@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-function ModelCard({model, newProject, handleBudget, handleModelFilter}) {
+function ModelCard({model, newProject, handleBudget, handleModelFilter, exists }) {
     const [showDetails, setShowDetails] = useState(false)
     const {id, name, image, agency, age, city, ranking, shows_walked, height, special_skills, fee, insta_followers} = model
     
@@ -23,7 +23,7 @@ function ModelCard({model, newProject, handleBudget, handleModelFilter}) {
         <div className="model-card">
             <h3>{name} | Ranking: {ranking}</h3> 
             <img src={image} alt={name} onClick={() => setShowDetails(!showDetails)} ></img><br/>
-            <button onClick={handleConfirmModel}>Book Her</button>
+            <button onClick={handleConfirmModel}>{exists ? "Fire Her" : "Book Her"}</button>
             <button onClick={() => setShowDetails(!showDetails)}>{showDetails ? "Hide Details" : "Show Details"}</button>
             {showDetails ?
             <div>
