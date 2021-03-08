@@ -11,7 +11,7 @@ function Projects({currentUser}) {
         .then(data => {
             setProjects(data.projects)
             console.log(data)})
-    }, [])
+    }, [currentUser])
 
     function deleteProject(id) {
         fetch(`http://localhost:3000/projects/${id}`, {
@@ -22,8 +22,8 @@ function Projects({currentUser}) {
         }
 
     const renderProjectList = projects.map(project => (
-
-            <Project 
+        <Project 
+            key={project.id}
             project={project}
             models={project.models}
             currentUser={currentUser}

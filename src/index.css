@@ -144,7 +144,7 @@ button {
   width: 6rem;
   height: 3rem;
   border: 1px solid var(--blue);
-  padding: 1rem;
+  padding: 1rem 1rem;
 
 }
 
@@ -185,4 +185,8 @@ button {
   color: var(--dark-blue);
   height: 2rem;
   width: 2rem;
+}
+
+ul {
+  list-style: none;
 }

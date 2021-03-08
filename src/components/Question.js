@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react"
 import { useHistory } from "react-router-dom";
+import MonsterQ from "./MonsterQ"
 
 
-function Question({question, onModelFilter, setCurrentQuestion, newProject, handleBudget, setRandomQuestion, currentQuestion, previousQuestion}) {
+function Question({question, onModelFilter, setCurrentQuestion, newProject, handleBudget, currentQuestion, stopIntervals}) {
     const [filterTerm, setFilterTerm] = useState("")
     const {id, text, model_attr} = question
     const [timeLeft, setTimeLeft] = useState(15)
@@ -29,32 +30,19 @@ function Question({question, onModelFilter, setCurrentQuestion, newProject, hand
         e.preventDefault()
         
         onModelFilter(filterTerm, model_attr)
+        setNextQuestion()
+    }
 
+    function setNextQuestion() {
         if (parseInt(currentQuestion) === 7) {
             finishQuestions()
         } else {
         setCurrentQuestion(() => currentQuestion + 1)}
-
-        console.log(id, currentQuestion)
-
-        
-        // if (id % 2 === 0) {
-        //     setCurrentQuestion(id + 1)
-        // } 
-        // else if (id === 1 ){
-        //     setCurrentQuestion(id + 1)
-        // }
-        // else {
-        //     setRandomQuestion()
-        // }
-
-        // setCurrentQuestion(() => Math.floor(Math.random() * 7))
     }
 
     function finishQuestions() {
-        console.log("finish triggered")
         let updatedBudget = parseInt(newProject.budget)
-
+        
         fetch(`http://localhost:3000/projects/${newProject.id}`, {
             method: "PATCH",
             headers: {
@@ -62,11 +50,9 @@ function Question({question, onModelFilter, setCurrentQuestion, newProject, hand
             },
             body: JSON.stringify({budget: updatedBudget})
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            history.push('/projects')
-        })
+
+        history.push('/projects')
+        stopIntervals()
     }
 
 
@@ -75,10 +61,14 @@ function Question({question, onModelFilter, setCurrentQuestion, newProject, hand
     <div id="question">
         <h2> Question {id}: {text}</h2>
         <form onSubmit={submitQuestion} className="single-question">
-        <input value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)}></input>
-        <input type="submit"></input>
+        {/* <input value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)}></input> */}
+        {id === 6 ? <div>
+        <button onClick={() => onModelFilter("all", model_attr)} >Yes</button> <button onClick={() => onModelFilter("no", model_attr)}>No</button>
+        </div> : <input value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)}></input> }
+        <input type="submit" ></input>
         </form>
         <p className="timer">Time Left: {timeLeft}</p>
+        
     </div>
     )
 }

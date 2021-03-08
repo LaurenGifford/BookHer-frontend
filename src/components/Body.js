@@ -1,12 +1,11 @@
 import Question from "./Question"
 import ModelCard from "./ModelCard";
 import MonsterQ from "./MonsterQ"
-import 'reactjs-popup/dist/index.css';
 
 import {project_questions} from '../data.js';
 import React, {useState, useEffect} from "react"
 
-function Body({allModels, setAllModels, currentUser}) {
+function Body({allModels, setAllModels, currentUser, backupModels}) {
     const [projectData, setProjectData] = useState({
         date:"", 
         title:"", 
@@ -22,18 +21,22 @@ function Body({allModels, setAllModels, currentUser}) {
     const [newProject, setNewProject] = useState(0)
     const [index, setIndex] = useState(0)
     const [random, setRandom] = useState(0)
+    const [open, setOpen] = useState(false);
+
+
+    let randomizer, popupTimer
 
     const displayCurrentQuestion = allQuestions.filter((question) => question.id === currentQuestion)
     .map((question) => (
         < Question key={question.id} question={question} 
             onModelFilter={handleModelFilter} handleBudget={handleBudget} 
             setCurrentQuestion={setCurrentQuestion} newProject={newProject}
-            setRandomQuestion={setRandomQuestion}
             currentQuestion={currentQuestion}
-            previousQuestion={question.id - 1}
+            stopIntervals={stopIntervals}
         />))
-
-    let displayModels = allModels.slice(index, index + 4)
+        
+    
+    const displayModels = getModels()
     .filter(model => model.agency !== newProject.data)
     .map((model) => (
         <ModelCard key={model.id} model={model} 
@@ -42,17 +45,57 @@ function Body({allModels, setAllModels, currentUser}) {
             exists={false}
         />))
 
-    const renderPopUp = popUpQuestions.filter(question => question.id === 8)
+    function getModels () {
+        
+        let newSlice
+        if (!!allModels) {
+            if (allModels.length > 4) {
+                newSlice = allModels.slice(index, index + 4)
+            } else {newSlice = allModels.slice(index)}
+        } else {
+            // setAllModels(backupModels)
+            newSlice = backupModels.slice(index, index + 4)
+        }
+        return newSlice
+    }
+    
+    
+
+
+    // function getModels () {
+    //     let newSlice
+    //     if (allModels && allModels.length > 4) {
+    //         newSlice = allModels.slice(index, index + 4)
+    //     } else {newSlice = allModels.slice(index)}
+    //     return newSlice
+    // }
+
+
+    const renderPopUp = popUpQuestions.filter(q => q.id === random)
     .map(question => 
             <MonsterQ 
                 question={question}
                 handleBudget={handleBudget}
+                open={open}
+                setOpen={setOpen}
             />
         )
 
 
-    function setRandomQuestion() {
-        setRandom(Math.floor(Math.random() * (12 - 8) + 8))
+    function handlePopUps() {
+        randomizer = setInterval(() => {
+        setRandom(Math.floor(Math.random() * (12 - 8) + 8))}
+        , 18000)
+
+        popupTimer = setInterval(() => {
+            setOpen(true)
+        }, 20000)
+
+    }
+
+    function stopIntervals() {
+        clearInterval(randomizer)
+        clearInterval(popupTimer)
     }
     
     
@@ -62,34 +105,15 @@ function Body({allModels, setAllModels, currentUser}) {
         .then(data => {
             setAllQuestions(data.slice(0,7));
             setPopUpQuestions(data.slice(8,12))
-            console.log(data.slice(0,7))
         })
     }, [])
-    
-    // function chooseNextQuestion() {
-    //     console.log("next question?")
-    //     if (allQuestions < 1) { 
-    //     Math.floor(Math.random() * allQuestions.length)}
-    // }
-
-    // let copy = allQuestions.slice(0)
-    // return function() {
-    //     if (copy.length < 1) { copy = allQuestions.slice(0); }
-    //     var index = Math.floor(Math.random() * copy.length);
-    //     var item = copy[index];
-    //     copy.splice(index, 1);
-    //     return console.log(item)
-    //     // return item;
-    // };
-    
-    
     
     
     function handleFormSubmit(e) {
         e.preventDefault()
         setShowModelQuestions(true)
-        console.log(projectData)
         handleModelFilter(projectData.agency, "agency")
+        handlePopUps()
         
         fetch(`http://localhost:3000/projects`, {
             method: "POST",
@@ -119,17 +143,7 @@ function Body({allModels, setAllModels, currentUser}) {
             ...newProject,
             budget: newBudget 
         })
-        console.log(newBudget)
         }
-
-        // if (timeLeft === 0 ) {
-        //     let penalty = newProject.budget - 1000
-        //     setNewProject({
-        //         ...newProject,
-        //         budget: penalty
-        //     })
-        //     console.log(newProject)
-        // }
     } 
 
 
@@ -152,22 +166,37 @@ function Body({allModels, setAllModels, currentUser}) {
             filteredModels = allModels.filter((model) => model.insta_followers > parseInt(filterTerm))
         }
         else if (model_attr === "city") {
-            filteredModels = allModels.filter((model) => model.city === projectData.city)
+            if (filterTerm === "all") {filteredModels = allModels}
+            else {filteredModels = allModels.filter((model) => model.city === projectData.city)}
         }
         else if (model_attr === "special_skills") {
             filteredModels = allModels.filter((model) => model.special_skills.includes(filterTerm))
         }
         else if (model_attr === "agency") {
-            filteredModels = allModels.filter((model) => model.agency != filterTerm)
+            filteredModels = allModels.filter((model) => model.agency !== filterTerm)
         }
         else if (model_attr === "id") {
             filteredModels = allModels.filter((model) => model.id !== filterTerm)
         }
 
-        setAllModels( filteredModels.length > 0 && filteredModels)
+        setAllModels(allModels.length === 0 ? [...backupModels] : [...filteredModels])
         console.log(filteredModels)
     }
-    console.log(allModels.length)
+
+    function getMoreModels() {
+        console.log(allModels.length, index)
+        if (index > allModels.length - 4) {
+            setIndex(0)
+            setAllModels(backupModels)
+        } 
+        if (allModels.length === 0 ) {
+            setAllModels(backupModels)
+            setIndex(0)
+        }
+        else {
+            setIndex(index + 4)
+        }
+    }
 
 
     return (
@@ -201,14 +230,13 @@ function Body({allModels, setAllModels, currentUser}) {
             }
             {showModelQuestions ? 
             <div className="models-container">
-            <button onClick={() => setIndex(index + 4)} >See more Models</button>
+            <button onClick={() => getMoreModels()} >See more Models</button>
             <div id="budget" >Budget {newProject.budget}</div>
                 {showModelQuestions ? displayCurrentQuestion : null}
                 {allModels.length === 0 ? <h3>No more Models to show</h3> : displayModels}
             </div>
             : null}
-            {renderPopUp}
-            {/* {popUp ? renderPopUp : null} */}
+            {open ? renderPopUp : null}
             
     </div>
     )

@@ -12,11 +12,16 @@ import Body from "./Body"
 function App() {
   const [currentUser, setCurrentUser] = useState(1)
   const [allModels, setAllModels] = useState([])
+  let backupModels
   
   useEffect(() => {
     fetch('http://localhost:3000/models')
     .then(response => response.json())
-    .then(data => setAllModels(data))
+    .then(data => {
+      setAllModels(data)
+      backupModels = data
+      console.log(backupModels)
+    })
 }, [])
 
   return (
@@ -31,7 +36,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/create_project">
-            <Body allModels={allModels} setAllModels={setAllModels} currentUser={currentUser}/>
+            <Body allModels={allModels} backupModels={backupModels} setAllModels={setAllModels} currentUser={currentUser}/>
           </Route>
           <Route path="/projects">
             <Projects 
