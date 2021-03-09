@@ -46,7 +46,7 @@ function Login({ setCurrentUser }) {
     const { name, password } = formData;
 
     return (
-        <div>
+        <div className="login">
         <form onSubmit={handleSubmit} autoComplete="off">
           <h1>Login</h1>
           <label>Name</label>

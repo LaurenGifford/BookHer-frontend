@@ -12,7 +12,7 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
         budget: 100000, 
         city:"", 
         agency: "",
-        casting_director_id: currentUser
+        casting_director_id: currentUser.id
     })
     const [showModelQuestions, setShowModelQuestions] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState(1)

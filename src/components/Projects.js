@@ -5,12 +5,22 @@ function Projects({currentUser}) {
     const [projects, setProjects] = useState([])
     const [showProject, setShowProject] = useState(false)
 
+
+
     useEffect(() => {
-        fetch(`http://localhost:3000/casting_directors/${currentUser}`)
+        const token = localStorage.getItem("token");
+        if (token) {
+        fetch(`http://localhost:3000/casting_directors/${currentUser.id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
         .then(response => response.json())
         .then(data => {
             setProjects(data.projects)
-            console.log(data)})
+            console.log(data)
+            })
+        }
     }, [currentUser])
 
     function deleteProject(id) {

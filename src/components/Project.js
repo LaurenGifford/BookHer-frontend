@@ -26,7 +26,7 @@ function Project({models, project, currentUser, deleteProject}) {
             <section>
             <p>Date: {date} </p>
             <p>City: {city} </p>
-            <p>Casting Director: {currentUser} </p>
+            <p>Casting Director: {currentUser.name} </p>
             <p>Budget: ${budget} </p>
             <button onClick={() => deleteProject(id)}>Delete Project</button>
             </section>

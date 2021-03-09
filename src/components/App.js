@@ -21,6 +21,8 @@ function App() {
 
   const [allModels, setAllModels] = useState([])
   const [backupModels, setBackupModels] = useState([])
+
+  useDocumentTitle("BookHer")
   
   useEffect(() => {
     fetch('http://localhost:3000/models')
