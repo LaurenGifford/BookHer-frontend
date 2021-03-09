@@ -9,8 +9,16 @@ import Projects from "./Projects"
 import SignUp from "./SignUp"
 import Body from "./Body"
 
+export function useDocumentTitle(title) {
+  useEffect(() => {
+    document.title = title
+  }, [title]);
+}
+
 function App() {
-  const [currentUser, setCurrentUser] = useState(1)
+  const [currentUser, setCurrentUser] = useState(null)
+  console.log(currentUser)
+
   const [allModels, setAllModels] = useState([])
   const [backupModels, setBackupModels] = useState([])
   
@@ -23,26 +31,71 @@ function App() {
     })
 }, [])
 
+
+  // auto-login!
+  // TODO: check if a user has already logged in (look for their token)
+  // if they've already logged in, use that token to them in again
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     fetch("http://localhost:3000/me", {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //       .then((r) => r.json())
+  //       .then((casting_director) => {
+  //         setCurrentUser(casting_director);
+  //       });
+  //   }
+  // }, []);
+
+
+//  function useHandleLogin() {
+//   useEffect(() => {
+//     fetch("http://localhost:3000/me")
+//       .then((r) => r.json())
+//       .then(setCurrentUser);
+//   }, []);
+// }
+
+//   function handleLogout() {
+//     setCurrentUser(null);
+//   }
+
+
   return (
     <>
-      <Header />
+    <Header currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <main>
         <Switch>
           <Route path="/signup">
-            <SignUp />
+            <SignUp setCurrentUser={setCurrentUser}/>
           </Route>
           <Route path="/login">
-            <Login />
+            <Login 
+            setCurrentUser={setCurrentUser} 
+            />
           </Route>
+      { currentUser && 
+          <>
           <Route path="/create_project">
-            <Body allModels={allModels} backupModels={backupModels} setAllModels={setAllModels} currentUser={currentUser}/>
+            <Body 
+            allModels={allModels} 
+            backupModels={backupModels} 
+            setAllModels={setAllModels} 
+            currentUser={currentUser}/>
           </Route>
-          <Route path="/projects">
+
+           <Route path="/projects">
             <Projects 
             models={models.slice(0, 5)} 
             currentUser={currentUser}
             />
           </Route>
+          </>
+          }
         </Switch>
       </main>
     </>
