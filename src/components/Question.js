@@ -61,7 +61,6 @@ function Question({question, onModelFilter, setCurrentQuestion, newProject, hand
     <div id="question">
         <h2> Question {id}: {text}</h2>
         <form onSubmit={submitQuestion} className="single-question">
-        {/* <input value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)}></input> */}
         {id === 6 ? <div>
         <button onClick={() => onModelFilter("all", model_attr)} >Yes</button> <button onClick={() => onModelFilter("no", model_attr)}>No</button>
         </div> : <input value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)}></input> }

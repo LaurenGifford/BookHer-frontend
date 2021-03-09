@@ -28,9 +28,9 @@ function Projects({currentUser}) {
             models={project.models}
             currentUser={currentUser}
             deleteProject={deleteProject}
+
         />
     ))
-    
     
     return (
         <div>

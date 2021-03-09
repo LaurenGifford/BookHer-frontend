@@ -1,10 +1,12 @@
 import React, {useState} from "react"
 
-function ModelCard({model, newProject, handleBudget, handleModelFilter, exists }) {
+function ModelCard({model, newProject, handleBudget, handleModelFilter, exists, deleteModelfromProject}) {
     const [showDetails, setShowDetails] = useState(false)
-    const {id, name, image, agency, age, city, ranking, shows_walked, height, special_skills, fee, insta_followers} = model
+    const [jobID, setJobID] = useState(0)
+    const {id, name, image, agency, age, city, ranking, shows_walked, height, special_skills, fee, insta_followers, jobs} = model
     
     function handleConfirmModel(){
+        if (exists === false) {
         let newJob = {model_id: parseInt(model.id), project_id: newProject.id}
         fetch("http://localhost:3000/jobs", {
           method: "POST",
@@ -13,11 +15,22 @@ function ModelCard({model, newProject, handleBudget, handleModelFilter, exists }
         })
           .then((r) => r.json())
           .then((data) => {
-            console.log(data)
+            setJobID(data.id)
           })
           handleBudget(fee)
           handleModelFilter(id, "id")
         }
+        else if (exists === true) {
+          let foundJob = jobs.find(job => {
+            if (job.model_id === id) {
+                return job.id
+            }
+        })
+          fetch(`http://localhost:3000/jobs/${foundJob.id}`, {
+          method: "DELETE" })
+          let deleteModel = model.id
+          deleteModelfromProject(deleteModel)
+        }}
 
     return (
         <div className="model-card">

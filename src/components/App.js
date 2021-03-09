@@ -20,17 +20,14 @@ function App() {
   console.log(currentUser)
 
   const [allModels, setAllModels] = useState([])
-  let backupModels
-
-  useDocumentTitle("BookHer")
+  const [backupModels, setBackupModels] = useState([])
   
   useEffect(() => {
     fetch('http://localhost:3000/models')
     .then(response => response.json())
     .then(data => {
       setAllModels(data)
-      backupModels = data
-      console.log(backupModels)
+      setBackupModels(data)
     })
 }, [])
 
