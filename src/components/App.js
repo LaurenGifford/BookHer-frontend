@@ -12,15 +12,14 @@ import Body from "./Body"
 function App() {
   const [currentUser, setCurrentUser] = useState(1)
   const [allModels, setAllModels] = useState([])
-  let backupModels
+  const [backupModels, setBackupModels] = useState([])
   
   useEffect(() => {
     fetch('http://localhost:3000/models')
     .then(response => response.json())
     .then(data => {
       setAllModels(data)
-      backupModels = data
-      console.log(backupModels)
+      setBackupModels(data)
     })
 }, [])
 

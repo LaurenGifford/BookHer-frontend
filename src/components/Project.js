@@ -4,13 +4,20 @@ import React, {useState} from "react"
 function Project({models, project, currentUser, deleteProject}) {
     const [showProject, setShowProject] = useState(false)
     const {id, title, date, budget, city} = project
+    const [thisProjectsModels, setThisProjectsModels] = useState(models)
     
-    const modelsarray = models.map((model) => (
+    const modelsarray = thisProjectsModels.map((model) => (
     <ModelCard 
         key={model.id} 
         model={model} 
         exists={true}
+        deleteModelfromProject={deleteModelfromProject}
     />))
+
+    function deleteModelfromProject(deleteModel) {
+        let modelsToKeep = models.filter((model) => model.id !== deleteModel)
+        setThisProjectsModels(modelsToKeep)
+    }
     
     return (
         <div className="project-container">

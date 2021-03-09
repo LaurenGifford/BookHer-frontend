@@ -22,7 +22,8 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
     const [index, setIndex] = useState(0)
     const [random, setRandom] = useState(0)
     const [open, setOpen] = useState(false);
-
+    const [exists, setExist] = useState(false)
+    const [error, setError] = useState('')
 
     let randomizer, popupTimer
 
@@ -35,8 +36,7 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
             stopIntervals={stopIntervals}
         />))
         
-    
-    const displayModels = getModels()
+    const displayModels = allModels.slice(index, index + 4)
     .filter(model => model.agency !== newProject.data)
     .map((model) => (
         <ModelCard key={model.id} model={model} 
@@ -44,32 +44,6 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
             handleModelFilter={handleModelFilter}
             exists={false}
         />))
-
-    function getModels () {
-        
-        let newSlice
-        if (!!allModels) {
-            if (allModels.length > 4) {
-                newSlice = allModels.slice(index, index + 4)
-            } else {newSlice = allModels.slice(index)}
-        } else {
-            // setAllModels(backupModels)
-            newSlice = backupModels.slice(index, index + 4)
-        }
-        return newSlice
-    }
-    
-    
-
-
-    // function getModels () {
-    //     let newSlice
-    //     if (allModels && allModels.length > 4) {
-    //         newSlice = allModels.slice(index, index + 4)
-    //     } else {newSlice = allModels.slice(index)}
-    //     return newSlice
-    // }
-
 
     const renderPopUp = popUpQuestions.filter(q => q.id === random)
     .map(question => 
@@ -154,7 +128,7 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
             filteredModels = allModels.filter((model) => model.age > parseInt(filterTerm))
         }
         else if (model_attr === "height") {
-            filteredModels = allModels.filter((model) => model.height > parseInt(filterTerm)) 
+             filteredModels = allModels.filter((model) => model.height > parseInt(filterTerm)) 
         }
         else if (model_attr === "shows_walked") {
             filteredModels = allModels.filter((model) => model.shows_walked > parseInt(filterTerm)) 
@@ -178,24 +152,13 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
         else if (model_attr === "id") {
             filteredModels = allModels.filter((model) => model.id !== filterTerm)
         }
-
-        setAllModels(allModels.length === 0 ? [...backupModels] : [...filteredModels])
-        console.log(filteredModels)
+        if (allModels.length === 0 || !filteredModels) {
+            setAllModels([...backupModels]) 
+        }
+        else {setAllModels(filteredModels)}
     }
-
     function getMoreModels() {
-        console.log(allModels.length, index)
-        if (index > allModels.length - 4) {
-            setIndex(0)
-            setAllModels(backupModels)
-        } 
-        if (allModels.length === 0 ) {
-            setAllModels(backupModels)
-            setIndex(0)
-        }
-        else {
-            setIndex(index + 4)
-        }
+        setIndex((index + 4)%allModels.length)
     }
 
 
@@ -230,6 +193,9 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
             }
             {showModelQuestions ? 
             <div className="models-container">
+                {error && (
+                    <p className="error"> {error} </p>
+                )}
             <button onClick={() => getMoreModels()} >See more Models</button>
             <div id="budget" >Budget {newProject.budget}</div>
                 {showModelQuestions ? displayCurrentQuestion : null}
