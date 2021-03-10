@@ -36,7 +36,7 @@ function Login({ setCurrentUser }) {
           console.log(data)
         setCurrentUser(data.casting_director);
         localStorage.setItem("token", data.token);
-        history.push("/create_project");
+        history.push("/new_project");
       })
       .catch((data) => {
         setErrors(data.errors);
@@ -46,7 +46,7 @@ function Login({ setCurrentUser }) {
     const { name, password } = formData;
 
     return (
-        <div className="login">
+        <div className="login-form">
         <form onSubmit={handleSubmit} autoComplete="off">
           <h1>Login</h1>
           <label>Name</label>

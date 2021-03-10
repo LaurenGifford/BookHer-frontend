@@ -163,7 +163,8 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
 
 
     return (
-        <div>
+        <div id="choose-models">
+            <h4 className="welcome">Welcome, {currentUser.name}</h4>
             {showModelQuestions ? null :
             <form onSubmit={handleFormSubmit}> 
                 <label>{project_questions[1].text}</label>
@@ -196,9 +197,9 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
                 {error && (
                     <p className="error"> {error} </p>
                 )}
-            <button onClick={() => getMoreModels()} >See more Models</button>
-            <div id="budget" >Budget {newProject.budget}</div>
+            <div id="budget" >{newProject.budget}</div>
                 {showModelQuestions ? displayCurrentQuestion : null}
+                <button id="more"onClick={() => getMoreModels()} ></button>
                 {allModels.length === 0 ? <h3>No more Models to show</h3> : displayModels}
             </div>
             : null}

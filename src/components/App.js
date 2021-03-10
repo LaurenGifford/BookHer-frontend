@@ -82,7 +82,7 @@ function App() {
           </Route>
       { currentUser && 
           <>
-          <Route path="/create_project">
+          <Route path="/new_project">
             <Body 
             allModels={allModels} 
             backupModels={backupModels} 

@@ -47,33 +47,35 @@ function SignUp({ setCurrentUser }) {
   const { name, password } = formData;
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <h1>Signup</h1>
+    <div className="signup-form">
+      <form onSubmit={handleSubmit} autoComplete="off">
+        <h1>Signup</h1>
 
-      <label>Name</label>
-      <input
-        type="text"
-        name="name"
-        value={name}
-        onChange={handleChange}
-      />
+        <label>Name</label>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+        />
 
-      <label>Password</label>
-      <input
-        type="password"
-        name="password"
-        autoComplete="current-password"
-        value={password}
-        onChange={handleChange}
-      />
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          autoComplete="current-password"
+          value={password}
+          onChange={handleChange}
+        />
 
-      {errors.length !== 0 && errors.map((error) => (
-        <p key={error} style={{ color: "red" }}>
-          {error}
-        </p>
-      ))}
-      <input type="submit" value="Signup" />
-    </form>
+        {errors.length !== 0 && errors.map((error) => (
+          <p key={error} style={{ color: "red" }}>
+            {error}
+          </p>
+        ))}
+        <input type="submit" value="Signup" />
+      </form>
+    </div>
   );
 }
 

@@ -1,4 +1,6 @@
 import { Link, useHistory } from "react-router-dom";
+import styled from "styled-components";
+
 
 function Header ({currentUser, setCurrentUser}) {
     const history = useHistory()
@@ -18,22 +20,20 @@ function Header ({currentUser, setCurrentUser}) {
         {currentUser ?   
             <>
             <div>
-                <Link id="new-project" to="/create_project">Create Project</Link>
+                <Link id="new-project" to="/new_project"></Link>
                 { currentUser.projects.length !== 0 && 
-                <Link id="projects" to="/projects">Projects</Link>}
+                <Link id="projects" to="/projects"></Link>}
             </div> 
-            <h4>Welcome, {currentUser.name}</h4>
+            {/* <h4>Welcome, {currentUser.name}</h4> */}
             </>
             : null }
-
-            <h1>BookHer</h1>
-        {currentUser ? <button id="logout" onClick={handleLogout}>Logout</button> :
-            <div>
-                <Link id="signup" to="/signup">Signup</Link>
-                <Link id="login" to="/login">Login</Link>
+        {currentUser ? <button id="logout" onClick={handleLogout}></button> :
+            <div className="login-signup">
+                <Link id="signup" to="/signup"></Link>
+                <Link id="login" to="/login"></Link>
             </div>
         }
-      </header>
+        </header>
     )
 }
 

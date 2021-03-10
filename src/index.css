@@ -1,11 +1,16 @@
 :root {
-  --blue: rgb(118, 201, 240);
-  --dark-blue: rgb(6, 34, 94);;
+  --blue: rgb(118, 222, 240);
+  --gray: rgb(22, 22, 22);;
   --cream: rgb(242, 243, 243);
 }
 
 html {
   font-family: 'Zekton';
+  background-color: var(--gray);
+  background-image: url(backgrounds/BookHer_BG_Large.png);
+
+  background-repeat: no-repeat;
+  background-position: center; 
 }
 
 
@@ -21,20 +26,29 @@ body {
     monospace;
 } */
 
+main {
+  margin: 1rem;
+  place-items: center;
+  padding: 100px;
+  
+}
+/* Header */
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--blue);
-  color: var(--dark-blue)
+  color: var(--gray);
+  background-image: url(backgrounds/BookHer_Banner_1.png);
+  height: 120px;
 }
 
 header a,
 header button {
   font-size: 1rem;
   display: inline-block;
-  background-color: var(--dark-blue);
+  background-color: var(--gray);
   border: 1px solid var(--blue);
   margin: 1rem;
   padding: 1rem;
@@ -45,8 +59,68 @@ header button {
 }
 
 #login {
-  color: pink;
+  background-image: url(words/Login.png);
+  background-size: 150px 50px;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 20px;
 }
+
+#signup {
+  background-image: url(words/Signup.png);
+  background-size: 150px 50px;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 20px;
+}
+
+#logout {
+  background-image: url(words/Logout.png);
+  background-size: 150px 50px;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 20px;
+}
+
+#projects {
+  background-image: url(words/Projects.png);
+  background-size: 150px 50px;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 20px;
+}
+
+#new-project {
+  background-image: url(words/New.png);
+  background-size: 150px 50px;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 20px;
+}
+
+
+
+/* Login/Signup */
+
+
+.login-form {
+  place-self: center;
+  margin: auto;
+  text-align: center;
+  padding: 150px 0;
+  color: var(--gray);
+  opacity: 0.75;
+}
+
+.signup-form {
+  place-self: center;
+  margin: auto;
+  text-align: center;
+  padding: 150px 0;
+  opacity: 0.75;
+}
+
+/* Body */
 
 
 
@@ -56,13 +130,6 @@ section {
   align-items: center;
 }
 
-
-/* main {
-  margin: 1rem;
-  grid-template-rows: 1fr 1fr;
-} */
-
-
 .model-card {
   grid-row: 2;
 }
@@ -70,16 +137,9 @@ section {
 .model-card img {
   height: 20rem;
   width: 18rem;
-
+  
 }
 
-.project-container {
-  display: inline-block;
-  display: grid;
-  background-color: var(--cream);
-  align-items: center;
-  grid-template-rows: 50px 50px;
-}
 
 .models-container {
   padding: 2rem;
@@ -87,48 +147,96 @@ section {
   grid-template-columns: minmax(20rem, 50rem);
   grid-template-columns: repeat(4, 300px);
   grid-template-rows: 1fr 1fr;
-  background-color: var(--cream);
+  
 }
 
+#choose-models {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+
+.welcome {
+  color: var(--blue);
+  justify-content: flex-start;
+}
+
+
 #budget {
-  grid-column: 3;
-  grid-row: 1;
-  font-size: larger;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-image: url(words/Budget.png);
+  background-size: 100px 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-size: large;
   font-weight: bold;
+  color: var(--blue);
+  width: 150px;
+  height: 60px;
+  padding: 1px;
+  margin-left: 100px;
+  margin-top: 100px;
+}
+
+#more {
+  background-image: url(words/Models.png);
+  background-size: 200px 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 300px;
+  cursor: pointer;
+  margin-top: 350px;
+  margin-left: 250px;
 }
 
 #question {
-  grid-column: 2;
-  grid-row: 1;
+  /* grid-column: 2;
+  grid-row: 1; */
+  background-color: var(--cream);
+  height: 220px;
+  width: 350px;
+  opacity: 0.7;
+  padding: 3px;
+  text-align: center;
 }
 
 form {
   background-color: var(--cream);
   border: 1px solid var(--blue);
+  color: var(--gray);
   display: flex;
   flex-direction: column;
   width: 400px;
   margin: 0 auto;
   padding: 0 1rem 1rem;
-  color: var(--dark-blue);
-  grid-row: 1;
+  /* grid-row: 1; */
+  /* opacity: 0.5; */
+  text-align: center;
+  place-self: center;
+  
 }
 
 form input {
   margin: 0.25rem 0;
   border: 1px solid var(--blue);
+  text-align: center;
 }
 
 form input[type="submit"] {
   width: 40%;
-  background-color: var(--dark-blue);
+  background-color: var(--gray);
   color: var(--cream);
+  align-self: center;
 }
 
 form select {
   margin: 0.25rem 0;
   border: 1px solid var(--blue);
-  color: var(--dark-blue);
+  color: var(--gray);
 }
 
 
@@ -146,17 +254,17 @@ form.single-question input{
 }
 
 form.single-question label{
-  color: var(--dark-blue);
+  color: var(--gray);
 }
 
 button {
-  background-color: var(--dark-blue);
+  background-color: var(--gray);
   color: var(--cream);
   width: 6rem;
   height: 3rem;
   border: 1px solid var(--blue);
   padding: 1rem 1rem;
-
+  
 }
 
 
@@ -193,7 +301,7 @@ button {
   background: #ffffff;
   border-radius: 18px;
   border: 1px solid #cfcece;
-  color: var(--dark-blue);
+  color: var(--gray);
   height: 2rem;
   width: 2rem;
 }
@@ -202,7 +310,12 @@ ul {
   list-style: none;
 }
 
-/* .login {
-  background-image: ;
-} */
 
+
+.project-container {
+  display: inline-block;
+  display: grid;
+  background-color: var(--cream);
+  align-items: center;
+  grid-template-rows: 50px 50px;
+}

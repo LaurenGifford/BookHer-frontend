@@ -7,9 +7,11 @@ function MonsterQ ({question, handleBudget, open, setOpen }) {
 
     const {id, text, pop_up} = question
 
+    // closeOnDocumentClick onClose={closeModal}
+
     return (
         <div>
-        <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+        <Popup open={open}>
           <div className="modal">
             <div className="header"> Monster Alert!!! </div>
                 <div className="content">
