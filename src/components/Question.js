@@ -60,16 +60,29 @@ function Question({question, onModelFilter, setCurrentQuestion, newProject, hand
     return (
     <div id="question">
         <h2> Question {id}: {text}</h2>
-        <form onSubmit={submitQuestion} className="single-question">
         {id === 6 ? <div>
-        <button onClick={() => onModelFilter("all", model_attr)} >Yes</button> <button onClick={() => onModelFilter("no", model_attr)}>No</button>
-        </div> : <input value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)}></input> }
-        <input type="submit" ></input>
-        </form>
-        <p className="timer">Time Left: {timeLeft}</p>
+        <button onClick={() => {
+            onModelFilter("all", model_attr)
+            setNextQuestion()
+            }} >
+            Yes
+        </button> 
+        <button onClick={() => {
+            onModelFilter("no", model_attr)
+            setNextQuestion()
+            }}>
+            No
+        </button>
+        </div> : 
+        <form onSubmit={submitQuestion} className="single-question">
+            <input value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)}></input>
+            <input type="submit"></input>
+        </form> }
+        <p className="timer">Time Left: {timeLeft} seconds</p>
         
-    </div>
-    )
+        </div>
+        )
 }
+        
 
 export default Question

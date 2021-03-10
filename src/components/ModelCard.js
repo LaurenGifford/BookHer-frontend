@@ -37,9 +37,9 @@ function ModelCard({model, newProject, handleBudget, handleModelFilter, exists, 
             <h3>{name} | Ranking: {ranking}</h3> 
             <img src={image} alt={name} onClick={() => setShowDetails(!showDetails)} ></img><br/>
             <button id={exists ? "fire" : "book"} onClick={handleConfirmModel}>
-              {exists ? "Fire Her" : "Book Her"}
+              {/* {exists ? "Fire Her" : "Book Her"} */}
             </button>
-            <button onClick={() => setShowDetails(!showDetails)}>{showDetails ? "Hide Details" : "Show Details"}</button>
+            {/* <button onClick={() => setShowDetails(!showDetails)}>{showDetails ? "Hide Details" : "Show Details"}</button> */}
             {showDetails ?
             <div>
               <small> Agency: {agency} | {city}</small> 

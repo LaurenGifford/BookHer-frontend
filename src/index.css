@@ -1,7 +1,7 @@
 :root {
   --blue: rgb(118, 222, 240);
   --gray: rgb(22, 22, 22);;
-  --cream: rgb(242, 243, 243);
+  --cream: rgb(242, 243, 243, 0.6);
 }
 
 html {
@@ -55,7 +55,7 @@ header button {
   text-decoration: none;
   color: var(--cream);
   cursor: pointer;
-
+  border-radius: 20px;
 }
 
 #login {
@@ -78,6 +78,7 @@ header button {
   background-image: url(words/Logout.png);
   background-size: 150px 50px;
   background-repeat: no-repeat;
+  background-position: center;
   width: 120px;
   height: 20px;
 }
@@ -120,25 +121,7 @@ header button {
   opacity: 0.75;
 }
 
-/* Body */
-
-
-
-section {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.model-card {
-  grid-row: 2;
-}
-
-.model-card img {
-  height: 20rem;
-  width: 18rem;
-  
-}
+/* Model Cards */
 
 
 .models-container {
@@ -149,6 +132,50 @@ section {
   grid-template-rows: 1fr 1fr;
   
 }
+
+section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.model-card {
+  grid-row: 2;
+  background-color: var(--cream);
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+#book {
+  width: 18rem;
+  background-image: url(words/Book.png);
+  background-size: 200px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+#fire {
+  width: 18rem;
+  background-image: url(words/Fire.png);
+  background-size: 200px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+
+.model-card img {
+  height: 20rem;
+  width: 18rem;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Body */
+
 
 #choose-models {
   display: flex;
@@ -194,12 +221,9 @@ section {
 }
 
 #question {
-  /* grid-column: 2;
-  grid-row: 1; */
   background-color: var(--cream);
-  height: 220px;
+  height: 250px;
   width: 350px;
-  opacity: 0.7;
   padding: 3px;
   text-align: center;
 }
@@ -217,17 +241,20 @@ form {
   /* opacity: 0.5; */
   text-align: center;
   place-self: center;
-  
+  border-radius: 20px;
 }
 
 form input {
   margin: 0.25rem 0;
   border: 1px solid var(--blue);
+  height: 30px;
   text-align: center;
+  border-radius: 20px;
 }
 
 form input[type="submit"] {
   width: 40%;
+  /* height: 40px; */
   background-color: var(--gray);
   color: var(--cream);
   align-self: center;
@@ -237,6 +264,7 @@ form select {
   margin: 0.25rem 0;
   border: 1px solid var(--blue);
   color: var(--gray);
+  border-radius: 20px;
 }
 
 
@@ -264,19 +292,32 @@ button {
   height: 3rem;
   border: 1px solid var(--blue);
   padding: 1rem 1rem;
-  
+  cursor: pointer;
+  border-radius: 25px;
 }
 
+button:hover {
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
 
 .modal {
   font-size: 12px;
+  border-radius: 20px;
+  /* background-color: var(--cream); */
 }
 .modal > .header {
   width: 100%;
+  height: 40px;
   border-bottom: 1px solid gray;
   font-size: 25px;
   text-align: center;
   padding: 5px;
+  background-image: url(words/Alert.png);
+  background-size: 150px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: var(--gray)
+
 }
 .modal > .content {
   width: 100%;
@@ -288,8 +329,10 @@ button {
   padding: 10px 5px;
   margin: auto;
   text-align: center;
+  display: flex;
+  justify-content: space-evenly;
 }
-.modal > .close {
+/* .modal > .close {
   cursor: pointer;
   position: absolute;
   display: block;
@@ -304,6 +347,34 @@ button {
   color: var(--gray);
   height: 2rem;
   width: 2rem;
+} */
+
+#monster-keep {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background-image: url(words/Keep.png);
+  background-size: 150px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 220px;
+  height: 40px;
+  color: var(--blue);
+}
+
+#monster-fire {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  align-content: flex-end;
+  background-image: url(words/Fire.png);
+  background-size: 150px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 220px;
+  height: 40px;
+  color: var(--blue);
+  
 }
 
 ul {

@@ -39,8 +39,10 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
     const displayModels = allModels.slice(index, index + 4)
     .filter(model => model.agency !== newProject.data)
     .map((model) => (
-        <ModelCard key={model.id} model={model} 
-            newProject={newProject} handleBudget={handleBudget} 
+        <ModelCard key={model.id} 
+            model={model} 
+            newProject={newProject} 
+            handleBudget={handleBudget} 
             handleModelFilter={handleModelFilter}
             exists={false}
         />))
@@ -52,6 +54,7 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
                 handleBudget={handleBudget}
                 open={open}
                 setOpen={setOpen}
+                newProject={newProject}
             />
         )
 
@@ -152,13 +155,18 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
         else if (model_attr === "id") {
             filteredModels = allModels.filter((model) => model.id !== filterTerm)
         }
-        if (allModels.length === 0 || !filteredModels) {
+        if (allModels.length === 0) {
             setAllModels([...backupModels]) 
         }
         else {setAllModels(filteredModels)}
     }
+
+
     function getMoreModels() {
-        setIndex((index + 4)%allModels.length)
+        if (allModels.length !== 0){
+        setIndex((index + 4 )% allModels.length)}
+        else {setIndex((index + 4 )% backupModels.length)}
+        console.log( index, backupModels.length)
     }
 
 
@@ -197,7 +205,7 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
                 {error && (
                     <p className="error"> {error} </p>
                 )}
-            <div id="budget" >{newProject.budget}</div>
+            <div id="budget" >${newProject.budget}</div>
                 {showModelQuestions ? displayCurrentQuestion : null}
                 <button id="more"onClick={() => getMoreModels()} ></button>
                 {allModels.length === 0 ? <h3>No more Models to show</h3> : displayModels}
