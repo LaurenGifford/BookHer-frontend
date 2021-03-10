@@ -18,19 +18,19 @@ function Header ({currentUser, setCurrentUser}) {
         {currentUser ?   
             <>
             <div>
-                <Link to="/create_project">Create Project</Link>
+                <Link id="new-project" to="/create_project">Create Project</Link>
                 { currentUser.projects.length !== 0 && 
-                <Link to="/projects">Projects</Link>}
+                <Link id="projects" to="/projects">Projects</Link>}
             </div> 
             <h4>Welcome, {currentUser.name}</h4>
             </>
             : null }
 
             <h1>BookHer</h1>
-        {currentUser ? <button onClick={handleLogout}>Logout</button> :
+        {currentUser ? <button id="logout" onClick={handleLogout}>Logout</button> :
             <div>
-                <Link to="/signup">Signup</Link>
-                <Link to="/login">Login</Link>
+                <Link id="signup" to="/signup">Signup</Link>
+                <Link id="login" to="/login">Login</Link>
             </div>
         }
       </header>

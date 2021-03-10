@@ -15,7 +15,8 @@ function Project({models, project, currentUser, deleteProject}) {
     />))
 
     function deleteModelfromProject(deleteModel) {
-        let modelsToKeep = models.filter((model) => model.id !== deleteModel)
+        let modelsToKeep = thisProjectsModels.filter((model) => model.id !== deleteModel)
+        // let modelsToKeep = models.filter((model) => model.id !== deleteModel)
         setThisProjectsModels(modelsToKeep)
     }
     
@@ -23,7 +24,7 @@ function Project({models, project, currentUser, deleteProject}) {
         <div className="project-container">
             <h2 onClick={() => setShowProject(!showProject)}> Project: {title} </h2>
             {showProject ? <>
-            <section>
+            <section className="project-details">
             <p>Date: {date} </p>
             <p>City: {city} </p>
             <p>Casting Director: {currentUser.name} </p>
