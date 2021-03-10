@@ -19,19 +19,19 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
   console.log(currentUser)
 
-  const [allModels, setAllModels] = useState([])
-  const [backupModels, setBackupModels] = useState([])
+  // const [allModels, setAllModels] = useState([])
+  // const [backupModels, setBackupModels] = useState([])
 
   useDocumentTitle("BookHer")
   
-  useEffect(() => {
-    fetch('http://localhost:3000/models')
-    .then(response => response.json())
-    .then(data => {
-      setAllModels(data)
-      setBackupModels(data)
-    })
-}, [])
+//   useEffect(() => {
+//     fetch('http://localhost:3000/models')
+//     .then(response => response.json())
+//     .then(data => {
+//       setAllModels(data)
+//       setBackupModels(data)
+//     })
+// }, [])
 
 
   // auto-login!
@@ -83,16 +83,12 @@ function App() {
       { currentUser && 
           <>
           <Route path="/new_project">
-            <Body 
-            allModels={allModels} 
-            backupModels={backupModels} 
-            setAllModels={setAllModels} 
+            <Body
             currentUser={currentUser}/>
           </Route>
 
            <Route path="/projects">
             <Projects 
-            models={models.slice(0, 5)} 
             currentUser={currentUser}
             />
           </Route>

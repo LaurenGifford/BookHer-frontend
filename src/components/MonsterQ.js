@@ -53,6 +53,7 @@ function MonsterQ ({question, handleBudget, open, setOpen, newProject }) {
                     }}
                 >
                 </button>
+                <div id="agent"></div>
             </div>
           </div>
         </Popup>

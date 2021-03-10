@@ -129,17 +129,18 @@ header button {
   display: grid;
   grid-template-columns: minmax(20rem, 50rem);
   grid-template-columns: repeat(4, 300px);
-  grid-template-rows: 1fr 1fr;
-  
+  grid-template-rows: 1fr;
+  overflow: auto;
+  grid-row: 2;
+  flex-wrap: wrap;
+  margin-top: 9rem;
+  /* width: 1000px; */
+  /* position: relative; */
 }
 
-section {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
 
 .model-card {
+  flex-wrap: wrap;
   grid-row: 2;
   background-color: var(--cream);
   margin-left: 10px;
@@ -218,11 +219,12 @@ section {
   cursor: pointer;
   margin-top: 350px;
   margin-left: 250px;
+  margin-bottom: 20px;
 }
 
 #question {
   background-color: var(--cream);
-  height: 250px;
+  height: 270px;
   width: 350px;
   padding: 3px;
   text-align: center;
@@ -293,7 +295,7 @@ button {
   border: 1px solid var(--blue);
   padding: 1rem 1rem;
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 20px;
 }
 
 button:hover {
@@ -303,7 +305,7 @@ button:hover {
 .modal {
   font-size: 12px;
   border-radius: 20px;
-  /* background-color: var(--cream); */
+  background-color: var(--cream);
 }
 .modal > .header {
   width: 100%;
@@ -317,7 +319,7 @@ button:hover {
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--gray)
-
+  
 }
 .modal > .content {
   width: 100%;
@@ -331,23 +333,18 @@ button:hover {
   text-align: center;
   display: flex;
   justify-content: space-evenly;
+  align-content: flex-end;
 }
-/* .modal > .close {
-  cursor: pointer;
-  position: absolute;
-  display: block;
-  padding: 2px 5px;
-  line-height: 20px;
-  right: -10px;
-  top: -10px;
-  font-size: 20px;
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid #cfcece;
-  color: var(--gray);
-  height: 2rem;
-  width: 2rem;
-} */
+
+#agent {
+  background-image: url(BookHer_Agent_BG-Border.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 150px;
+  height: 150px;
+}
+
 
 #monster-keep {
   display: flex;
@@ -377,16 +374,49 @@ button:hover {
   
 }
 
+/* Projects */
+
+#all-projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-weight: bolder;
+}
+
 ul {
   list-style: none;
 }
 
 
 
-.project-container {
-  display: inline-block;
-  display: grid;
+.project {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin-top: 10px;
   background-color: var(--cream);
+  display: grid;
   align-items: center;
-  grid-template-rows: 50px 50px;
+
+  /* grid-template-rows: 5rem 5rem; */
+}
+
+#project-details {
+  grid-row: 1;
+  right: 150px;
+  /* justify-content: right; */
+  /* display: flex; */
+  /* flex-direction: row; */
+  margin-left: 150px;
+  margin-top: 10px;
+  position: absolute;
+  flex-wrap: wrap;
+} 
+
+
+#title {
+  grid-row: 1;
+  margin-left: 40px;
+  /* position: absolute; */
 }

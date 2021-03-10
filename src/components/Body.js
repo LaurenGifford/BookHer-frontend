@@ -5,7 +5,7 @@ import MonsterQ from "./MonsterQ"
 import {project_questions} from '../data.js';
 import React, {useState, useEffect} from "react"
 
-function Body({allModels, setAllModels, currentUser, backupModels}) {
+function Body({currentUser}) {
     const [projectData, setProjectData] = useState({
         date:"", 
         title:"", 
@@ -24,8 +24,19 @@ function Body({allModels, setAllModels, currentUser, backupModels}) {
     const [open, setOpen] = useState(false);
     const [exists, setExist] = useState(false)
     const [error, setError] = useState('')
+    const [allModels, setAllModels] = useState([])
+    const [backupModels, setBackupModels] = useState([])
 
     let randomizer, popupTimer
+
+    useEffect(() => {
+        fetch('http://localhost:3000/models')
+        .then(response => response.json())
+        .then(data => {
+          setAllModels(data)
+          setBackupModels(data)
+        })
+    }, [])
 
     const displayCurrentQuestion = allQuestions.filter((question) => question.id === currentQuestion)
     .map((question) => (

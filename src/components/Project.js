@@ -21,16 +21,16 @@ function Project({models, project, currentUser, deleteProject}) {
     }
     
     return (
-        <div className="project-container">
-            <h2 onClick={() => setShowProject(!showProject)}> Project: {title} </h2>
+        <div className="project">
+            <h2 id="title" onClick={() => setShowProject(!showProject)}> Project: {title} </h2>
             {showProject ? <>
-            <section className="project-details">
-            <p>Date: {date} </p>
-            <p>City: {city} </p>
-            <p>Casting Director: {currentUser.name} </p>
-            <p>Budget: ${budget} </p>
-            <button onClick={() => deleteProject(id)}>Delete Project</button>
-            </section>
+            <div id="project-details">
+                <p>Date: {date} </p>
+                <p>City: {city} </p>
+                <p>Casting Director: {currentUser.name} </p>
+                <p>Budget: ${budget} </p>
+                <button onClick={() => deleteProject(id)}>Delete Project</button>
+            </div>
             <div className="models-container">
             {modelsarray}
             </div> </>

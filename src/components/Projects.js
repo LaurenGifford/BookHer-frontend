@@ -43,7 +43,7 @@ function Projects({currentUser}) {
     ))
     
     return (
-        <div>
+        <div id="all-projects">
             <ul>{renderProjectList}</ul>
         </div>
 
