@@ -10,7 +10,7 @@ function MonsterQ ({question, handleBudget, open, setOpen, newProject }) {
 
 
     useEffect(() => {
-        fetch('http://localhost:3000/jobs')
+        fetch('https://book-her.herokuapp.com/jobs')
         .then(response => response.json())
         .then(data => {
             let jobs = data.filter((job) => job.project.id === newProject.id)
@@ -20,7 +20,7 @@ function MonsterQ ({question, handleBudget, open, setOpen, newProject }) {
     function removeRandom() {
         let randomNumber = Math.floor(Math.random() * (randomJobs.length))
         let foundRandomJob = randomJobs[randomNumber]
-          fetch(`http://localhost:3000/jobs/${foundRandomJob.id}`, {
+          fetch(`https://book-her.herokuapp.com/jobs/${foundRandomJob.id}`, {
           method: "DELETE" })
           console.log(foundRandomJob)
         }

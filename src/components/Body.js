@@ -31,7 +31,7 @@ function Body({currentUser}) {
     let randomizer, popupTimer
 
     useEffect(() => {
-        fetch('http://localhost:3000/models')
+        fetch('https://book-her.herokuapp.com/models')
         .then(response => response.json())
         .then(data => {
           setAllModels(data)
@@ -90,7 +90,7 @@ function Body({currentUser}) {
     
     
     useEffect(() => {
-        fetch('http://localhost:3000/questions')
+        fetch('https://book-her.herokuapp.com/questions')
         .then(response => response.json())
         .then(data => {
             setAllQuestions(data.slice(0,7));
@@ -105,7 +105,7 @@ function Body({currentUser}) {
         handleModelFilter(projectData.agency, "agency")
         handlePopUps()
         
-        fetch(`http://localhost:3000/projects`, {
+        fetch(`https://book-her.herokuapp.com/projects`, {
             method: "POST",
             headers: {
                 "Content-Type" : 'application/json'

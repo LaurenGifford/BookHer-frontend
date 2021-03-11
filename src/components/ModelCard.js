@@ -8,7 +8,7 @@ function ModelCard({model, newProject, setJobs, handleBudget, handleModelFilter,
     function handleConfirmModel(){
         if (exists === false) {
         let newJob = {model_id: parseInt(model.id), project_id: newProject.id}
-        fetch("http://localhost:3000/jobs", {
+        fetch("https://book-her.herokuapp.com/jobs", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newJob)
@@ -27,7 +27,7 @@ function ModelCard({model, newProject, setJobs, handleBudget, handleModelFilter,
                 return job.id
             }
         })
-          fetch(`http://localhost:3000/jobs/${foundJob.id}`, {
+          fetch(`https://book-her.herokuapp.com/jobs/${foundJob.id}`, {
           method: "DELETE" })
           let deleteModel = model.id
           deleteModelfromProject(deleteModel)

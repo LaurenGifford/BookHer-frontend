@@ -43,7 +43,7 @@ function Question({question, onModelFilter, setCurrentQuestion, newProject, hand
     function finishQuestions() {
         let updatedBudget = parseInt(newProject.budget)
         
-        fetch(`http://localhost:3000/projects/${newProject.id}`, {
+        fetch(`https://book-her.herokuapp.com/projects/${newProject.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type" : 'application/json'

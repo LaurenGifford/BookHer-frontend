@@ -10,7 +10,7 @@ function Projects({currentUser}) {
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
-        fetch(`http://localhost:3000/casting_directors/${currentUser.id}`, {
+        fetch(`https://book-her.herokuapp.com/casting_directors/${currentUser.id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -24,7 +24,7 @@ function Projects({currentUser}) {
     }, [currentUser])
 
     function deleteProject(id) {
-        fetch(`http://localhost:3000/projects/${id}`, {
+        fetch(`https://book-her.herokuapp.com/projects/${id}`, {
             method: "DELETE"
           })
           let notDeleted = projects.filter((project) => project.id !== id)
