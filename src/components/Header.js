@@ -24,7 +24,7 @@ function Header ({currentUser, setCurrentUser}) {
                 { currentUser.projects.length !== 0 && 
                 <Link id="projects" to="/projects"></Link>}
             </div> 
-            {/* <h4>Welcome, {currentUser.name}</h4> */}
+            {/* <h2>Welcome, {currentUser.name}</h2> */}
             </>
             : null }
         {currentUser ? <button id="logout" onClick={handleLogout}></button> :

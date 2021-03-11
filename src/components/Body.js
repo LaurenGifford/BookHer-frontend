@@ -26,6 +26,7 @@ function Body({currentUser}) {
     const [error, setError] = useState('')
     const [allModels, setAllModels] = useState([])
     const [backupModels, setBackupModels] = useState([])
+    const [jobs, setJobs] = useState([])
 
     let randomizer, popupTimer
 
@@ -56,17 +57,18 @@ function Body({currentUser}) {
             handleBudget={handleBudget} 
             handleModelFilter={handleModelFilter}
             exists={false}
+            setJobs={setJobs}
         />))
 
     const renderPopUp = popUpQuestions.filter(q => q.id === random)
-    .map(question => 
+    .map(question => jobs.length!==0 ?
             <MonsterQ 
                 question={question}
                 handleBudget={handleBudget}
                 open={open}
                 setOpen={setOpen}
                 newProject={newProject}
-            />
+            /> : <h3 className="choose">No Model, No Show!</h3>
         )
 
 
@@ -183,9 +185,9 @@ function Body({currentUser}) {
 
     return (
         <div id="choose-models">
-            <h4 className="welcome">Welcome, {currentUser.name}</h4>
+            {/* <h4 className="welcome">Welcome, {currentUser.name}</h4> */}
             {showModelQuestions ? null :
-            <form onSubmit={handleFormSubmit}> 
+            <form onSubmit={handleFormSubmit} autoComplete="off"> 
                 <label>{project_questions[1].text}</label>
                 <input name="date" value={projectData.date} type="text" onChange={handleChange}></input>
                 <label>{project_questions[0].text}</label>
@@ -208,7 +210,7 @@ function Body({currentUser}) {
                     <option value="Heroes">Heroes</option>
                     <option value="The Industry">The Industry</option>
                 </select>
-                <input type="submit" value="Submit"></input>
+                <input type="submit" value="Start!"></input>
             </form>
             }
             {showModelQuestions ? 
@@ -217,12 +219,12 @@ function Body({currentUser}) {
                     <p className="error"> {error} </p>
                 )}
             <div id="budget" >${newProject.budget}</div>
+                {open ? renderPopUp : null}
                 {showModelQuestions ? displayCurrentQuestion : null}
                 <button id="more"onClick={() => getMoreModels()} ></button>
-                {allModels.length === 0 ? <h3>No more Models to show</h3> : displayModels}
+                {allModels.length === 0 ? <h3 className="choose">No more Models to show</h3> : displayModels}
             </div>
             : null}
-            {open ? renderPopUp : null}
             
     </div>
     )

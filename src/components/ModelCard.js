@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-function ModelCard({model, newProject, handleBudget, handleModelFilter, exists, deleteModelfromProject}) {
+function ModelCard({model, newProject, setJobs, handleBudget, handleModelFilter, exists, deleteModelfromProject}) {
     const [showDetails, setShowDetails] = useState(false)
     const [jobID, setJobID] = useState(0)
     const {id, name, image, agency, age, city, ranking, shows_walked, height, special_skills, fee, insta_followers, jobs} = model
@@ -10,12 +10,13 @@ function ModelCard({model, newProject, handleBudget, handleModelFilter, exists, 
         let newJob = {model_id: parseInt(model.id), project_id: newProject.id}
         fetch("http://localhost:3000/jobs", {
           method: "POST",
-          headers: { "content-type": "application/json" },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newJob)
         })
           .then((r) => r.json())
           .then((data) => {
             setJobID(data.id)
+            setJobs([...jobs, data])
           })
           handleBudget(fee)
           handleModelFilter(id, "id")

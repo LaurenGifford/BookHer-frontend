@@ -37,7 +37,7 @@ function SignUp({ setCurrentUser }) {
       .then((data) => {
         setCurrentUser(data.casting_director)
         localStorage.setItem("token", data.token);
-        history.push("/create_project");
+        history.push("/new_project");
       })
       .catch((data) => {
         setErrors(data.errors);

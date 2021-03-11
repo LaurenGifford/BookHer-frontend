@@ -99,7 +99,12 @@ header button {
   height: 20px;
 }
 
-
+.choose{
+  color: var(--blue);
+  justify-self: flex-start;
+  position: absolute;
+  z-index: 1;
+}
 
 /* Login/Signup */
 
@@ -208,6 +213,10 @@ header button {
   padding: 1px;
   margin-left: 100px;
   margin-top: 100px;
+}
+
+.timer {
+  color: rgb(187, 3, 3);
 }
 
 #more {

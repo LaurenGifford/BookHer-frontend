@@ -59,7 +59,8 @@ function Question({question, onModelFilter, setCurrentQuestion, newProject, hand
 
     return (
     <div id="question">
-        <h2> Question {id}: {text}</h2>
+        {/* <h2> Question {id}: {text}</h2> */}
+        <h2>{text}</h2>
         {id === 6 ? <div>
         <button onClick={() => {
             onModelFilter("all", model_attr)
@@ -76,7 +77,7 @@ function Question({question, onModelFilter, setCurrentQuestion, newProject, hand
         </div> : 
         <form onSubmit={submitQuestion} className="single-question">
             <input value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)}></input>
-            <input type="submit"></input>
+            <input type="submit" value="See Models"></input>
         </form> }
         <p className="timer">Time Left: {timeLeft} seconds</p>
         

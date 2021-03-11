@@ -17,21 +17,10 @@ export function useDocumentTitle(title) {
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
-  console.log(currentUser)
 
-  // const [allModels, setAllModels] = useState([])
-  // const [backupModels, setBackupModels] = useState([])
 
   useDocumentTitle("BookHer")
-  
-//   useEffect(() => {
-//     fetch('http://localhost:3000/models')
-//     .then(response => response.json())
-//     .then(data => {
-//       setAllModels(data)
-//       setBackupModels(data)
-//     })
-// }, [])
+
 
 
   // auto-login!
