@@ -14,11 +14,12 @@ After logging into the app, a Casting Director will create a new project by answ
 This project was created with a React frontend using JSON Web Token for Authentication. The backend is built witha RESTful Rails API and a Postgresql database.
 
 ### Getting Started
-1. Fork and clone this frontend repo and its accompanying backend onto your local machine.
+1. Fork and clone this frontend repo and its accompanying [backend](https://github.com/LaurenGifford/BookHer-backend) onto your local machine.
 2. While in the frontend directory, run `npm install` in the terminal to ensure all necessary packages are installed.
 3. Run `npm start` to start up a server listening on localhost:3001.
+4. Complete backend setup specified in that repository.
 5. Finally, if a browser tab has not already opened up, please visit localhost:3001 in browser to launch the app.
-6. If you would prefer to skip the setup and directly view a running version, please checkout the deployed app on Netlify! https://bookher.netlify.app/login
+6. If you would prefer to skip the setup and directly view a running version, please checkout the deployed app on [Netlify](https://bookher.netlify.app/login)! 
 
 ### Next Steps
 In subsequent versions of this app, we hope to create game prompts to inform the player of actions they should take to avoid penalties.
